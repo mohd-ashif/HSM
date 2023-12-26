@@ -1,18 +1,15 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import data from '../../data/constants'; 
 
-const Employees = () => {
+const Departments = () => {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
-
-    setEmployees(data.employees);
+   
   }, []);
 
   const handleDelete = () => {
-   
+  
   };
 
   return (
@@ -27,14 +24,14 @@ const Employees = () => {
         <table className='table'>
           <thead>
             <tr>
-              <th>Name</th>
+              <th> Name</th>
               <th>Age</th>
               <th>Number</th>
               <th>Profile Image</th>
-              <th>Description</th>
+              <th>description</th>
               <th>Select Department</th>
               <th>Select Head</th>
-              <th>Action</th>
+              <th>Operation</th>
             </tr>
           </thead>
 
@@ -48,8 +45,9 @@ const Employees = () => {
                 <td>{employee.description}</td>
                 <td>{employee.selectDepartment}</td>
                 <td>{employee.selectHead}</td>
+             
                 <td>
-                  <Link to='/edit_employee' className='btn btn-success'>
+                  <Link to='/edit_department' className='btn btn-success'>
                     Edit
                   </Link>
                   <button
@@ -68,4 +66,4 @@ const Employees = () => {
   );
 };
 
-export default Employees;
+export default Departments;

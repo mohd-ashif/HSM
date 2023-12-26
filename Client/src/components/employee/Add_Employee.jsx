@@ -5,7 +5,7 @@ const Add_Heads = () => {
   const [number, setNumber] = useState('');
   const [description, setDescription] = useState('');
   const [age, setAge] = useState('');
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('');
   const [selectedHead, setSelectedHead] = useState('');
 

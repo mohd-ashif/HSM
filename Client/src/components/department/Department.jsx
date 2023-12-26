@@ -1,18 +1,15 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import data from '../../data/constants'; 
 
 const Departments = () => {
   const [departments, setDepartments] = useState([]);
 
   useEffect(() => {
    
-    setDepartments(data.departments);
   }, []);
 
   const handleDelete = () => {
-
+  
   };
 
   return (
@@ -31,7 +28,7 @@ const Departments = () => {
               <th>Profile Image</th>
               <th>Year Founded</th>
               <th>description</th>
-              <th>Action</th>
+              <th>Operation</th>
             </tr>
           </thead>
 
@@ -42,7 +39,6 @@ const Departments = () => {
                 <td>{department.image}</td>
                 <td>{department.year}</td>
                 <td>{department.description}</td>
-                <td>Operation</td>
                 <td>
                   <Link to='/edit_department' className='btn btn-success'>
                     Edit

@@ -1,18 +1,15 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import data from '../../data/constants'; 
 
 const DepartmentsHeads = () => {
   const [departmentHeads, setDepartmentHeads] = useState([]);
 
   useEffect(() => {
    
-    setDepartmentHeads(data.departmentHeads);
   }, []);
 
   const handleDelete = () => {
-   
+  
   };
 
   return (
@@ -27,25 +24,25 @@ const DepartmentsHeads = () => {
         <table className='table'>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Age</th>
+              <th> Name</th>
+              <th> Age</th>
               <th>Profile Image</th>
               <th>Employee Number</th>
-              <th>Description</th>
-              <th>Department</th>
+              <th>description</th>
+              <th>select</th>
               <th>Operation</th>
             </tr>
           </thead>
 
           <tbody>
-            {departmentHeads.map((head, index) => (
+            {departmentHeads.map((departmentHeads, index) => (
               <tr key={index}>
-                <td>{head.name}</td>
-                <td>{head.age}</td>
-                <td>{head.image}</td>
-                <td>{head.number}</td>
-                <td>{head.description}</td>
-                <td>{head.selectDepartment}</td>
+                <td>{departmentHeads.name}</td>
+                <td>{departmentHeads.age}</td>
+                <td>{departmentHeads.image}</td>
+                <td>{departmentHeads.number}</td>
+                <td>{departmentHeads.description}</td>
+                <td>{departmentHeads.select}</td>
                 <td>
                   <Link to='/edit_heads' className='btn btn-success'>
                     Edit
