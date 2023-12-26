@@ -1,15 +1,18 @@
+// departmentHead.jsx
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import data from '../../data/constants'; 
 
 const DepartmentsHeads = () => {
-  const [users, setUsers] = useState([]);
+  const [departmentHeads, setDepartmentHeads] = useState([]);
 
   useEffect(() => {
-   
+    // Fetch department heads data (replace this with your actual data fetching logic)
+    setDepartmentHeads(data.departmentHeads);
   }, []);
 
   const handleDelete = () => {
-  
+    // Handle delete logic
   };
 
   return (
@@ -24,25 +27,25 @@ const DepartmentsHeads = () => {
         <table className='table'>
           <thead>
             <tr>
-              <th> Name</th>
-              <th> Age</th>
+              <th>Name</th>
+              <th>Age</th>
               <th>Profile Image</th>
               <th>Employee Number</th>
-              <th>description</th>
-              <th>select</th>
+              <th>Description</th>
+              <th>Department</th>
               <th>Operation</th>
             </tr>
           </thead>
 
           <tbody>
-            {users.map((user, index) => (
+            {departmentHeads.map((head, index) => (
               <tr key={index}>
-                <td>{user.name}</td>
-                <td>{user.age}</td>
-                <td>{user.image}</td>
-                <td>{user.number}</td>
-                <td>{user.description}</td>
-                <td>{user.select}</td>
+                <td>{head.name}</td>
+                <td>{head.age}</td>
+                <td>{head.profileImage}</td>
+                <td>{head.employeeNumber}</td>
+                <td>{head.profileDescription}</td>
+                <td>{head.department}</td>
                 <td>
                   <Link to='/edit_heads' className='btn btn-success'>
                     Edit

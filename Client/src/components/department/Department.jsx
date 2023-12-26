@@ -1,15 +1,18 @@
+// department.jsx
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import data from '../../data/constants'; // Import your data
 
 const Departments = () => {
-  const [users, setUsers] = useState([]);
+  const [departments, setDepartments] = useState([]);
 
   useEffect(() => {
-   
+    // Fetch departments data (replace this with your actual data fetching logic)
+    setDepartments(data.departments);
   }, []);
 
   const handleDelete = () => {
-  
+    // Handle delete logic
   };
 
   return (
@@ -33,12 +36,12 @@ const Departments = () => {
           </thead>
 
           <tbody>
-            {users.map((user, index) => (
+            {departments.map((department, index) => (
               <tr key={index}>
-                <td>{user.name}</td>
-                <td>{user.image}</td>
-                <td>{user.year}</td>
-                <td>{user.description}</td>
+                <td>{department.departmentName}</td>
+                <td>{department.departmentProfileImage}</td>
+                <td>{department.yearFounded}</td>
+                <td>{department.description}</td>
                 <td>
                   <Link to='/edit_department' className='btn btn-success'>
                     Edit

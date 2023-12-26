@@ -1,15 +1,18 @@
+// employee.jsx
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import data from '../../data/constants'; // Import your data
 
-const Departments = () => {
-  const [users, setUsers] = useState([]);
+const Employees = () => {
+  const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
-   
+    // Fetch employees data (replace this with your actual data fetching logic)
+    setEmployees(data.employees);
   }, []);
 
   const handleDelete = () => {
-  
+    // Handle delete logic
   };
 
   return (
@@ -24,11 +27,11 @@ const Departments = () => {
         <table className='table'>
           <thead>
             <tr>
-              <th> Name</th>
+              <th>Name</th>
               <th>Age</th>
               <th>Number</th>
               <th>Profile Image</th>
-              <th>description</th>
+              <th>Description</th>
               <th>Select Department</th>
               <th>Select Head</th>
               <th>Action</th>
@@ -36,17 +39,17 @@ const Departments = () => {
           </thead>
 
           <tbody>
-            {users.map((user, index) => (
+            {employees.map((employee, index) => (
               <tr key={index}>
-                <td>{user.name}</td>
-                <td>{user.age}</td>
-                <td>{user.number}</td>
-                <td>{user.image}</td>
-                <td>{user.description}</td>
-                <td>{selectDepartment}</td>
-                <td>{selectHead}</td>
+                <td>{employee.name}</td>
+                <td>{employee.age}</td>
+                <td>{employee.employeeNumber}</td>
+                <td>{employee.profileImage}</td>
+                <td>{employee.profileDescription}</td>
+                <td>{employee.department}</td>
+                <td>{employee.reportTo}</td>
                 <td>
-                  <Link to='/edit_department' className='btn btn-success'>
+                  <Link to='/edit_employee' className='btn btn-success'>
                     Edit
                   </Link>
                   <button
@@ -65,4 +68,4 @@ const Departments = () => {
   );
 };
 
-export default Departments;
+export default Employees;
