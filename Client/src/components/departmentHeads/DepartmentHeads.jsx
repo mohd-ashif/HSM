@@ -1,4 +1,4 @@
-// departmentHead.jsx
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import data from '../../data/constants'; 
@@ -7,12 +7,12 @@ const DepartmentsHeads = () => {
   const [departmentHeads, setDepartmentHeads] = useState([]);
 
   useEffect(() => {
-    // Fetch department heads data (replace this with your actual data fetching logic)
+   
     setDepartmentHeads(data.departmentHeads);
   }, []);
 
   const handleDelete = () => {
-    // Handle delete logic
+   
   };
 
   return (

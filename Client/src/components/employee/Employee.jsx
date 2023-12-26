@@ -1,18 +1,18 @@
-// employee.jsx
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import data from '../../data/constants'; // Import your data
+import data from '../../data/constants'; 
 
 const Employees = () => {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
-    // Fetch employees data (replace this with your actual data fetching logic)
+
     setEmployees(data.employees);
   }, []);
 
   const handleDelete = () => {
-    // Handle delete logic
+   
   };
 
   return (

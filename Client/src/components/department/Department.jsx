@@ -1,18 +1,18 @@
-// department.jsx
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import data from '../../data/constants'; // Import your data
+import data from '../../data/constants'; 
 
 const Departments = () => {
   const [departments, setDepartments] = useState([]);
 
   useEffect(() => {
-    // Fetch departments data (replace this with your actual data fetching logic)
+   
     setDepartments(data.departments);
   }, []);
 
   const handleDelete = () => {
-    // Handle delete logic
+
   };
 
   return (
