@@ -6,7 +6,7 @@ const Add_Heads = () => {
   const [description, setDescription] = useState('');
   const [age, setAge] = useState('');
   const [image, setImage] = useState('');
-  const [select, setSelect] = useState('');
+  const [selectDepartment, setSelectDepartment] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,7 +70,7 @@ const Add_Heads = () => {
             name='Department'
             className='form-control rounded-0'
             value={description}
-            onChange={(e) => setSelect(e.target.value)}
+            onChange={(e) => setSelectDepartment(e.target.value)}
           >
             <option value=''>Select Department</option>
             <option value='Cardiology'>Cardiology</option>

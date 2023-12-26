@@ -43,11 +43,11 @@ const Employees = () => {
               <tr key={index}>
                 <td>{employee.name}</td>
                 <td>{employee.age}</td>
-                <td>{employee.employeeNumber}</td>
-                <td>{employee.profileImage}</td>
-                <td>{employee.profileDescription}</td>
-                <td>{employee.department}</td>
-                <td>{employee.reportTo}</td>
+                <td>{employee.number}</td>
+                <td>{employee.image}</td>
+                <td>{employee.description}</td>
+                <td>{employee.selectDepartment}</td>
+                <td>{employee.selectHead}</td>
                 <td>
                   <Link to='/edit_employee' className='btn btn-success'>
                     Edit

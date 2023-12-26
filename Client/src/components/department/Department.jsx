@@ -38,10 +38,11 @@ const Departments = () => {
           <tbody>
             {departments.map((department, index) => (
               <tr key={index}>
-                <td>{department.departmentName}</td>
-                <td>{department.departmentProfileImage}</td>
-                <td>{department.yearFounded}</td>
+                <td>{department.name}</td>
+                <td>{department.image}</td>
+                <td>{department.year}</td>
                 <td>{department.description}</td>
+                <td>Operation</td>
                 <td>
                   <Link to='/edit_department' className='btn btn-success'>
                     Edit

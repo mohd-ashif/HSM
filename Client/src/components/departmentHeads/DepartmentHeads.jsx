@@ -42,10 +42,10 @@ const DepartmentsHeads = () => {
               <tr key={index}>
                 <td>{head.name}</td>
                 <td>{head.age}</td>
-                <td>{head.profileImage}</td>
-                <td>{head.employeeNumber}</td>
-                <td>{head.profileDescription}</td>
-                <td>{head.department}</td>
+                <td>{head.image}</td>
+                <td>{head.number}</td>
+                <td>{head.description}</td>
+                <td>{head.selectDepartment}</td>
                 <td>
                   <Link to='/edit_heads' className='btn btn-success'>
                     Edit
