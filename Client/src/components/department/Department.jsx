@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
 const Departments = () => {
   const [departments, setDepartments] = useState([]);
 
@@ -43,14 +44,14 @@ const Departments = () => {
             {departments.map((department) => (
               <tr key={department._id}>
                 <td>{department.name}</td>
-                <td>
-                  {/* Use the correct path to display the image */}
-                  <img src={`http://localhost:3000/upload/${department.image}`} alt="Department Image" />
+                <td >
+                
+                  <img src={`http://localhost:3000/upload/${department.image}`} alt="Department Image  "style={{'border':'1px solid black',"width" :"50px", "hieght":'50px', 'borderRadius':"50%"}} />
                 </td>
                 <td>{department.year}</td>
                 <td>{department.description}</td>
                 <td>
-                  <Link to={`/edit_department/${department._id}`} className='btn btn-success'>
+                  <Link to={`/add_department/${department._id}`} className='btn btn-success'>
                     Edit
                   </Link>
                   <button

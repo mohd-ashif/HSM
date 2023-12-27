@@ -15,7 +15,8 @@ const port = process.env.PORT;
 // Middlewares
 app.use(cors());
 app.use(express.json());
-app.use(express.static('/upload'));
+app.use('/upload', express.static('upload'));
+
 
 // DB
 try {
@@ -38,7 +39,7 @@ const upload = multer({ storage });
 
 // Add department into DB
 app.post('/add_departments', upload.single('image'), (req, res) => {
-  const { name, year, description, image } = req.body;
+  const { name, year, description} = req.body;
   const imagePath = req.file.filename;
 
   DepartmentModel.create({ name, year, description, image: req.file.filename })

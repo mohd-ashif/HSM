@@ -39,7 +39,7 @@ const DepartmentsHeads = () => {
               <tr key={index}>
                 <td>{departmentHeads.name}</td>
                 <td>{departmentHeads.age}</td>
-                <td>{departmentHeads.image}</td>
+                <td className='img1'>{departmentHeads.image}</td>
                 <td>{departmentHeads.number}</td>
                 <td>{departmentHeads.description}</td>
                 <td>{departmentHeads.select}</td>
