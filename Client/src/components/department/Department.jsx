@@ -1,15 +1,22 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
 const Departments = () => {
   const [departments, setDepartments] = useState([]);
 
   useEffect(() => {
-   
+    axios.get('http://localhost:3000/departments')
+      .then(result => setDepartments(result.data))
+      .catch(err => console.log(err));
   }, []);
 
-  const handleDelete = () => {
-  
+  const handleDelete = (departmentId) => {
+    axios.delete(`http://localhost:3000/delete_department/${departmentId}`)
+      .then(result => {
+        console.log(result);
+        setDepartments(departments.filter(dep => dep._id !== departmentId));
+      })
+      .catch(error => console.error('Error deleting department:', error));
   };
 
   return (
@@ -27,25 +34,28 @@ const Departments = () => {
               <th>Department Name</th>
               <th>Profile Image</th>
               <th>Year Founded</th>
-              <th>description</th>
+              <th>Description</th>
               <th>Operation</th>
             </tr>
           </thead>
 
           <tbody>
-            {departments.map((department, index) => (
-              <tr key={index}>
+            {departments.map((department) => (
+              <tr key={department._id}>
                 <td>{department.name}</td>
-                <td>{department.image}</td>
+                <td>
+                  {/* Use the correct path to display the image */}
+                  <img src={`http://localhost:3000/upload/${department.image}`} alt="Department Image" />
+                </td>
                 <td>{department.year}</td>
                 <td>{department.description}</td>
                 <td>
-                  <Link to='/edit_department' className='btn btn-success'>
+                  <Link to={`/edit_department/${department._id}`} className='btn btn-success'>
                     Edit
                   </Link>
                   <button
                     className='btn btn-danger'
-                    onClick={(e) => handleDelete()}
+                    onClick={() => handleDelete(department._id)}
                   >
                     Delete
                   </button>
