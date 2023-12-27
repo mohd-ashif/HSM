@@ -51,7 +51,7 @@ const Departments = () => {
                 <td>{department.year}</td>
                 <td>{department.description}</td>
                 <td>
-                  <Link to={`/add_department/${department._id}`} className='btn btn-success'>
+                  <Link to={`/edit_department`} className='btn btn-success'>
                     Edit
                   </Link>
                   <button

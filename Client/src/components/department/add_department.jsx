@@ -12,14 +12,26 @@ const Add_departmentlist = () => {
   const submit = async (e) => {
     e.preventDefault();
 
-    axios.get('http://localhost:5173/dashboard/departments', { name, year, description, image })
-      .then(result => {
-        console.log(result);
-        navigate('/dashboard/departments');
-      })
-      .catch(error => {
-        console.error('Error:', error);
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('year', year);
+    formData.append('description', description);
+    formData.append('image', image);
+
+    try {
+      const response = await axios.post('http://localhost:3000/dashboard/add_departments', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
+
+      console.log('Response:', response.data);
+
+     
+      navigate('/dashboard/departments');
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
@@ -27,6 +39,7 @@ const Add_departmentlist = () => {
       <div className='p-3 rounded w-25 border'>
         <h2>Add Department</h2>
         <form onSubmit={submit}>
+          {/* Your form inputs for name, year, description */}
           <div className='mb-3'>
             <label htmlFor="departmentName"><strong>Department Name</strong></label>
             <input
@@ -37,7 +50,6 @@ const Add_departmentlist = () => {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-
           <div className='mb-3'>
             <label htmlFor="yearFound"><strong>Year Found</strong></label>
             <input
@@ -59,6 +71,7 @@ const Add_departmentlist = () => {
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
+
 
           <div className='mb-3'>
             <label htmlFor="image"><strong>Upload Image:</strong></label>

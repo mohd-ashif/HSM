@@ -38,7 +38,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage }); 
 
 // Add department into DB
-app.post('/add_departments', upload.single('image'), (req, res) => {
+app.post('/dashboard/add_departments', upload.single('image'), (req, res) => {
   const { name, year, description} = req.body;
   const imagePath = req.file.filename;
 
@@ -47,13 +47,36 @@ app.post('/add_departments', upload.single('image'), (req, res) => {
     .catch((err) => res.json(err));
 });
 
-// Departments
+// show Departments
 app.get('/departments', (req, res) => {
   DepartmentModel.find({})
     .then((department) => res.json(department))
     .catch((err) => res.json(err));
 });
 
+//get for edit Department
+app.get('/getDepartment/:id', (req, res) => {
+  const id = req.params.id;
+  DepartmentModel.findById({ _id: id })
+    .then((department) => res.json(department))
+    .catch((err) => res.json(err));
+});
+
+//edit Department
+app.put('/add_department/:id', (req, res) => {
+  const id = req.params.id;
+  DepartmentModel.findByIdAndUpdate(
+    { _id: id },
+    {
+      name: req.body.name,
+      year: req.body.year,
+      description: req.body.description,  // Fix this line
+      image: req.body.image
+    }
+  )
+    .then(department => res.json(department))
+    .catch(err => res.json(err));
+});
 // login & signup
 
 app.post('/', (req, res) => {
