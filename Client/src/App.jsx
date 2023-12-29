@@ -37,7 +37,7 @@ function App() {
           <Route path="/dashboard/add_employee" element={<Add_Employee/>} />
           <Route path="/dashboard/edit_employee" element={<Edit_employee/>} />
         </Route>
-      </Routes>
+      </Routes> 
     </Router>
   );
 }

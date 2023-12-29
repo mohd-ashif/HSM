@@ -46,7 +46,7 @@ const Departments = () => {
                 <td>{department.name}</td>
                 <td >
                 
-                  <img src={`http://localhost:3000/upload/${department.image}`} alt="Department Image  "style={{'border':'1px solid black',"width" :"50px", "hieght":'50px', 'borderRadius':"50%"}} />
+                  <img src={`http://localhost:3000/upload/${department.image}`} alt="Department Image  " style={{ border: '1px solid black', width: '50px', height: '50px', borderRadius: '50%' }} />
                 </td>
                 <td>{department.year}</td>
                 <td>{department.description}</td>

@@ -1,84 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react'
 
-
-const Edit_department = () => {
-  const [name, setName] = useState('');
-  const [year, setYear] = useState('');
-  const [description, setDescription] = useState('');
-  const [image, setImage] = useState('');
-  const navigate = useNavigate();
-
-
-
-
-  const submit =  (e) => {
-    e.preventDefault();
-
-    axios.put('http://localhost:5173/edit_departments', { name, year, description, image })
-      .then(result => {
-        console.log(result);
-        navigate('/dashboard/departments');
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  };
-
+const edit_department = () => {
   return (
-    <div className='d-flex justify-content-center align-items-center h-75'>
-      <div className='p-3 rounded w-25 border'>
-        <h2>Add Department</h2>
-        <form onSubmit={submit}>
-          <div className='mb-3'>
-            <label htmlFor="departmentName"><strong>Department Name</strong></label>
-            <input
-              type="text"
-              name='departmentName'
-              placeholder='Enter Department Name'
-              className='form-control rounded-0'
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
+    <div>edit_department</div>
+  )
+}
 
-          <div className='mb-3'>
-            <label htmlFor="yearFound"><strong>Year Found</strong></label>
-            <input
-              type="text"
-              name='yearFound'
-              placeholder='Enter Year Found'
-              className='form-control rounded-0'
-              onChange={(e) => setYear(e.target.value)}
-            />
-          </div>
-
-          <div className='mb-3'>
-            <label htmlFor="description"><strong>Description</strong></label>
-            <input
-              type="text"
-              name='description'
-              placeholder='Enter Description'
-              className='form-control rounded-0'
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </div>
-
-          <div className='mb-3'>
-            <label htmlFor="image"><strong>Upload Image:</strong></label>
-            <input
-              type="file"
-              accept="image/*"
-              name='image'
-              onChange={(e) => setImage(e.target.files[0])}
-              className='form-control rounded-0'
-            />
-          </div>
-
-          <button className='btn btn-success w-100 rounded-0 mb-2' type="submit">Submit</button>
-        </form>
-      </div>
-    </div>
-  );
-};
-
-export default Edit_department;
+export default edit_department

@@ -80,7 +80,7 @@ const Add_departmentlist = () => {
               accept="image/*"
               name='image'
               onChange={(e) => setImage(e.target.files[0])}
-              className='form-control rounded-0'
+              className='form-control rounded-0 '
             />
           </div>
 

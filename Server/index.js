@@ -12,10 +12,13 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT;
 
+dotenv.config()
+
 // Middlewares
 app.use(cors());
 app.use(express.json());
 app.use('/upload', express.static('upload'));
+
 
 
 // DB
@@ -63,20 +66,29 @@ app.get('/getDepartment/:id', (req, res) => {
 });
 
 //edit Department
-app.put('/add_department/:id', (req, res) => {
+app.put('/edit_department/:id', (req, res) => {
   const id = req.params.id;
   DepartmentModel.findByIdAndUpdate(
     { _id: id },
     {
       name: req.body.name,
       year: req.body.year,
-      description: req.body.description,  // Fix this line
-      image: req.body.image
+      description: req.body.description,
+      image: req.body.image,
     }
   )
-    .then(department => res.json(department))
-    .catch(err => res.json(err));
+    .then((department) => {
+      if (!department) {
+        res.status(404).json({ error: 'Department not found' });
+      } else {
+        res.json(department);
+      }
+    })
+    .catch((err) => res.status(500).json({ error: 'Internal Server Error', details: err.message }));
 });
+
+
+
 // login & signup
 
 app.post('/', (req, res) => {

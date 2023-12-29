@@ -1,5 +1,7 @@
 
-
 /upload
 *.jpg
 *.png
+.env
+/README.md
+
