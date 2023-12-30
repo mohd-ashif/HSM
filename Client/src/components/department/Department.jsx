@@ -44,23 +44,31 @@ const Departments = () => {
             {departments.map((department) => (
               <tr key={department._id}>
                 <td>{department.name}</td>
-                <td >
-                
-                  <img src={`http://localhost:3000/upload/${department.image}`} alt="Department Image  " style={{ border: '1px solid black', width: '50px', height: '50px', borderRadius: '50%' }} />
+                <td>
+                  <img
+                    src={`http://localhost:3000/upload/${department.image}`}
+                    alt="Department Image"
+                    style={{ border: '1px solid black', width: '50px', height: '50px', borderRadius: '50%' }}
+                  />
                 </td>
                 <td>{department.year}</td>
                 <td>{department.description}</td>
                 <td>
-                  <Link to={`/edit_department`} className='btn btn-success'>
-                    Edit
+                  <Link to={`/dashboard/edit_department/${department._id}`} className='btn btn-success p-1'>
+                    <i className='fas fa-edit'></i>
                   </Link>
                   <button
-                    className='btn btn-danger'
+                    className='btn btn-danger p-1'
+                    style={{ marginLeft: '0.5rem' }} 
                     onClick={() => handleDelete(department._id)}
                   >
-                    Delete
+                    <i className='fas fa-trash-alt'></i>
                   </button>
                 </td>
+
+
+
+
               </tr>
             ))}
           </tbody>

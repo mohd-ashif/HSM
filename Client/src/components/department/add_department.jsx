@@ -35,11 +35,11 @@ const Add_departmentlist = () => {
   };
 
   return (
-    <div className='d-flex justify-content-center align-items-center h-75'>
-      <div className='p-3 rounded w-25 border'>
+    <div className='d-flex vh-100 bg-white justify-content-center align-items-center vw-100 p-1'>
+        <div className='w-50 bg-white rounded p-3'>
         <h2>Add Department</h2>
         <form onSubmit={submit}>
-          {/* Your form inputs for name, year, description */}
+         
           <div className='mb-3'>
             <label htmlFor="departmentName"><strong>Department Name</strong></label>
             <input

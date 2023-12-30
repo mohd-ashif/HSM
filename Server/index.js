@@ -12,13 +12,10 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT;
 
-dotenv.config()
-
 // Middlewares
 app.use(cors());
 app.use(express.json());
 app.use('/upload', express.static('upload'));
-
 
 
 // DB
@@ -58,7 +55,7 @@ app.get('/departments', (req, res) => {
 });
 
 //get for edit Department
-app.get('/getDepartment/:id', (req, res) => {
+app.get('/get_department/:id', (req, res) => {
   const id = req.params.id;
   DepartmentModel.findById({ _id: id })
     .then((department) => res.json(department))
@@ -66,17 +63,20 @@ app.get('/getDepartment/:id', (req, res) => {
 });
 
 //edit Department
-app.put('/edit_department/:id', (req, res) => {
+app.put('/edit_department/:id', upload.single('image'), (req, res) => {
   const id = req.params.id;
-  DepartmentModel.findByIdAndUpdate(
-    { _id: id },
-    {
-      name: req.body.name,
-      year: req.body.year,
-      description: req.body.description,
-      image: req.body.image,
-    }
-  )
+
+  const updatedData = {
+    name: req.body.name,
+    year: req.body.year,
+    description: req.body.description,
+  };
+
+  if (req.file) {
+    updatedData.image = req.file.filename;
+  }
+
+  DepartmentModel.findByIdAndUpdate({ _id: id }, updatedData, { new: true })
     .then((department) => {
       if (!department) {
         res.status(404).json({ error: 'Department not found' });
@@ -84,7 +84,19 @@ app.put('/edit_department/:id', (req, res) => {
         res.json(department);
       }
     })
-    .catch((err) => res.status(500).json({ error: 'Internal Server Error', details: err.message }));
+    .catch((err) =>
+      res.status(500).json({ error: 'Internal Server Error', details: err.message })
+    );
+});
+
+
+
+
+app.delete('/delete_department/:id', (req, res) => {
+  const id = req.params.id; 
+  DepartmentModel.findByIdAndDelete({ _id: id }) 
+    .then(department => res.json(department))
+    .catch(err => res.json(err)); 
 });
 
 
