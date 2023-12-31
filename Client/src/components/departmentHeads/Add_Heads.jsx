@@ -14,7 +14,7 @@ const Add_Heads = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const formData = new FormData();
     formData.append('name', name);
     formData.append('number', number);
@@ -22,23 +22,23 @@ const Add_Heads = () => {
     formData.append('age', age);
     formData.append('image', image);
     formData.append('select', select);
-
+  
     try {
       const response = await axios.post('http://localhost:3000/dashboard/add_heads', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-
+  
+      console.log('Form Data:', formData);
       console.log('Response:', response.data);
-
-     
-      navigate('/dashboard/heads');
+  
+      navigate('/dashboard/heads'); 
     } catch (error) {
       console.error('Error:', error);
     }
   };
-
+  
   return (
     <div className='vh-100 d-flex justify-content-center align-items-center'>
       <div className='w-50 bg-white rounded p-3'>

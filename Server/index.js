@@ -97,15 +97,19 @@ app.delete('/delete_department/:id', (req, res) => {
     .catch(err => res.json(err)); 
 });
 
-// add Head
+//add heads
 app.post("/dashboard/add_heads", upload.single('image'), (req, res) => {
-  const {name , number,age, description , select} =req.body
-  imagePath = req.file.filename
+  console.log(req.body);  // Log the received body data
+  console.log(req.file);  // Log the received file data
 
-  HeadsModel.create({name , number , age , description, select, image : req.file.filename} )
-  .then (heads => res.json(heads))
-  .catch( err => res.json (err))
-})
+  const { name, number, age, description, select } = req.body;
+  const imagePath = req.file ? req.file.filename : null;
+
+  HeadsModel.create({ name, number, age, description, select, image: imagePath })
+    .then((heads) => res.json(heads))
+    .catch((err) => res.json(err));
+});
+
 
 //show Haeds 
 app.get('/heads', (req, res) => {
