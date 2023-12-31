@@ -11,9 +11,21 @@ const DepartmentsHeads = () => {
       .catch(err => console.log(err));
   }, []);
 
-  const handleDelete = () => {
+  const handleDelete = (departmentHeadId) => {
+    if (!departmentHeadId) {
+      console.error('Invalid department head ID');
+      return;
+    }
 
+    axios.delete(`http://localhost:3000/delete_heads/${departmentHeadId}`)
+
+      .then(result => {
+      
+        setDepartmentHeads(departmentHeads.filter(head => head._id !== departmentHeadId));
+      })
+      .catch(error => console.error('Error deleting department head:', error));
   };
+
 
   return (
     <div className='px-5 mt-5'>
@@ -38,7 +50,7 @@ const DepartmentsHeads = () => {
           </thead>
 
           <tbody>
-            {departmentHeads.map((departmentHead, index) => (
+            {departmentHeads.map((departmentHead,index) => (
               <tr key={index}>
                 <td>{departmentHead.name}</td>
                 <td>{departmentHead.age}</td>
@@ -58,10 +70,11 @@ const DepartmentsHeads = () => {
                   </Link>
                   <button
                     className='btn btn-danger'
-                    onClick={(e) => handleDelete()}
+                    onClick={(e) => handleDelete(departmentHead._id)}
                   >
                     <i className='fas fa-trash-alt'></i>
                   </button>
+
                 </td>
 
               </tr>

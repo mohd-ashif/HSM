@@ -123,7 +123,8 @@ app.get("/get_heads/:id", (req, res) => {
   .catch(err =>res.json(err))
 })
 
-//edit heads
+
+// edit heads
 app.put("/edit_heads/:id", upload.single("image"), async (req, res) => {
   try {
     const { id } = req.params;
@@ -135,7 +136,6 @@ app.put("/edit_heads/:id", upload.single("image"), async (req, res) => {
       select: req.body.select,
     };
 
-    
     updateData.number = Number(req.body.number);
 
     if (req.file) {
@@ -154,18 +154,17 @@ app.put("/edit_heads/:id", upload.single("image"), async (req, res) => {
   }
 });
 
+//delete head
 
-
+app.delete('/delete_heads/:id', (req, res) => {
+  const id = req.params.id;
+  HeadsModel.findByIdAndDelete({ _id: id })
+    .then(heads => res.json(heads))
+    .catch(err => res.json(err));
+});
 
 
 // login & signup
-
-app.post('/', (req, res) => {
-  UserModel.create(req.body)
-      .then(users => res.json(users))
-      .catch(err => res.json(err));
-});
-
 
 app.post("/login", (req, res) => {
   const { email, password } = req.body;

@@ -32,7 +32,7 @@ const Add_Heads = () => {
 
       console.log('Response:', response.data);
 
-      // Assuming you have a route for the heads list
+     
       navigate('/dashboard/heads');
     } catch (error) {
       console.error('Error:', error);
