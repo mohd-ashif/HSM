@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const DepartmentsHeads = () => {
   const [departmentHeads, setDepartmentHeads] = useState([]);
 
   useEffect(() => {
-   
+    axios.get('http://localhost:3000/heads')
+      .then(result => setDepartmentHeads(result.data))
+      .catch(err => console.log(err));
   }, []);
 
   const handleDelete = () => {
-  
+   
   };
 
   return (
@@ -24,34 +27,40 @@ const DepartmentsHeads = () => {
         <table className='table'>
           <thead>
             <tr>
-              <th> Name</th>
-              <th> Age</th>
+              <th>Name</th>
+              <th>Age</th>
               <th>Profile Image</th>
               <th>Employee Number</th>
-              <th>description</th>
-              <th>select</th>
+              <th>Description</th>
+              <th>Select</th>
               <th>Operation</th>
             </tr>
           </thead>
 
           <tbody>
-            {departmentHeads.map((departmentHeads, index) => (
+            {departmentHeads.map((departmentHead, index) => (
               <tr key={index}>
-                <td>{departmentHeads.name}</td>
-                <td>{departmentHeads.age}</td>
-                <td className='img1'>{departmentHeads.image}</td>
-                <td>{departmentHeads.number}</td>
-                <td>{departmentHeads.description}</td>
-                <td>{departmentHeads.select}</td>
+                <td>{departmentHead.name}</td>
+                <td>{departmentHead.age}</td>
+                <td>
+                  <img
+                    src={`http://localhost:3000/upload/${departmentHead.image}`}
+                    alt="Department Image"
+                    style={{ border: '1px solid black', width: '50px', height: '50px', borderRadius: '50%' }}
+                  />
+                </td>
+                <td>{departmentHead.number}</td>
+                <td>{departmentHead.description}</td>
+                <td>{departmentHead.select}</td>
                 <td>
                   <Link to='/edit_heads' className='btn btn-success'>
-                    Edit
+                    <i className='fas fa-edit'></i>
                   </Link>
                   <button
                     className='btn btn-danger'
                     onClick={(e) => handleDelete()}
                   >
-                    Delete
+                    <i className='fas fa-trash-alt'></i>
                   </button>
                 </td>
               </tr>

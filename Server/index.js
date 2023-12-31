@@ -89,9 +89,7 @@ app.put('/edit_department/:id', upload.single('image'), (req, res) => {
     );
 });
 
-
-
-
+// delete department 
 app.delete('/delete_department/:id', (req, res) => {
   const id = req.params.id; 
   DepartmentModel.findByIdAndDelete({ _id: id }) 
@@ -99,6 +97,58 @@ app.delete('/delete_department/:id', (req, res) => {
     .catch(err => res.json(err)); 
 });
 
+// add Head
+app.post("/dashboard/add_heads", upload.single('image'), (req, res) => {
+  const {name , number,age, description , select} =req.body
+  imagePath = req.file.filename
+
+  HeadsModel.create({name , number , age , description, select, image : req.file.filename} )
+  .then (heads => res.json(heads))
+  .catch( err => res.json (err))
+})
+
+//show Haeds 
+app.get('/heads', (req, res) => {
+  HeadsModel.find({})
+  .then(heads => res.json(heads))
+  .catch(err => res.json(err))
+})
+
+//get for Edit head
+app.get("get_heads/:id" , (rea, res) => {
+  const id = req.params.id
+  HeadsModel.findById({_id:id})
+  .then(heads => res.json(heads))
+  .catch(err =>res.json(err))
+})
+
+//edit heads
+app.put("edit_heads/:id",upload.single("image"), (req, res) => {
+
+  const updateData = {
+    name: req.body.name,
+    age: req.body.age,
+    number: req.body.number,
+    description: req.body.description,
+    select:req.body.select
+
+  }
+  if(req.file){
+    updateData.image=  req.file.filename
+  }
+  HeadsModel.findByIdAndUpdate({_id:id}, updateData ,  {new :true})
+  .then((Heads) => {
+    if (!Heads) {
+      res.status(404).json({ error: 'Heads not found' });
+    } else {
+      res.json(Heads);
+    }
+  })
+  .catch((err) =>
+      res.status(500).json({ error: 'Internal Server Error', details: err.message })
+    );
+  
+} )
 
 
 // login & signup

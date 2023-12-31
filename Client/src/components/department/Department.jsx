@@ -65,10 +65,6 @@ const Departments = () => {
                     <i className='fas fa-trash-alt'></i>
                   </button>
                 </td>
-
-
-
-
               </tr>
             ))}
           </tbody>
