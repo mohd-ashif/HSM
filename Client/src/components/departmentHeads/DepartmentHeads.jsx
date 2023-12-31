@@ -12,7 +12,7 @@ const DepartmentsHeads = () => {
   }, []);
 
   const handleDelete = () => {
-   
+
   };
 
   return (
@@ -52,9 +52,9 @@ const DepartmentsHeads = () => {
                 <td>{departmentHead.number}</td>
                 <td>{departmentHead.description}</td>
                 <td>{departmentHead.select}</td>
-                <td>
-                  <Link to={`/dashboard/edit_heads/${departmentHead._id}`} className='btn btn-success'>
-                    <i className='fas fa-edit'></i> 
+                <td className="d-flex">
+                  <Link to={`/dashboard/edit_heads/${departmentHead._id}`} className='btn btn-success me-2'>
+                    <i className='fas fa-edit'></i>
                   </Link>
                   <button
                     className='btn btn-danger'
@@ -63,6 +63,7 @@ const DepartmentsHeads = () => {
                     <i className='fas fa-trash-alt'></i>
                   </button>
                 </td>
+
               </tr>
             ))}
           </tbody>
