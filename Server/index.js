@@ -115,7 +115,8 @@ app.get('/heads', (req, res) => {
 })
 
 //get for Edit head
-app.get("get_heads/:id" , (rea, res) => {
+app.get("/get_heads/:id", (req, res) => {
+
   const id = req.params.id
   HeadsModel.findById({_id:id})
   .then(heads => res.json(heads))
@@ -123,32 +124,38 @@ app.get("get_heads/:id" , (rea, res) => {
 })
 
 //edit heads
-app.put("edit_heads/:id",upload.single("image"), (req, res) => {
+app.put("/edit_heads/:id", upload.single("image"), async (req, res) => {
+  try {
+    const { id } = req.params;
 
-  const updateData = {
-    name: req.body.name,
-    age: req.body.age,
-    number: req.body.number,
-    description: req.body.description,
-    select:req.body.select
+    const updateData = {
+      name: req.body.name,
+      age: req.body.age,
+      description: req.body.description,
+      select: req.body.select,
+    };
 
-  }
-  if(req.file){
-    updateData.image=  req.file.filename
-  }
-  HeadsModel.findByIdAndUpdate({_id:id}, updateData ,  {new :true})
-  .then((Heads) => {
-    if (!Heads) {
+    
+    updateData.number = Number(req.body.number);
+
+    if (req.file) {
+      updateData.image = req.file.filename;
+    }
+
+    const updatedHeads = await HeadsModel.findByIdAndUpdate({ _id: id }, updateData, { new: true });
+
+    if (!updatedHeads) {
       res.status(404).json({ error: 'Heads not found' });
     } else {
-      res.json(Heads);
+      res.json(updatedHeads);
     }
-  })
-  .catch((err) =>
-      res.status(500).json({ error: 'Internal Server Error', details: err.message })
-    );
-  
-} )
+  } catch (err) {
+    res.status(500).json({ error: 'Internal Server Error', details: err.message });
+  }
+});
+
+
+
 
 
 // login & signup

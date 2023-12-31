@@ -34,7 +34,7 @@ function App() {
           <Route path="/dashboard/add_departments" element={<Add_departmentlist />} />
           <Route path="/dashboard/edit_department/:id" element={<Edit_department />} />
           <Route path="/dashboard/add_heads" element={<Add_Heads />} />
-          <Route path="/dashboard/edit_heads" element={<Edit_Heads/>} />
+          <Route path="/dashboard/edit_heads/:id" element={<Edit_Heads />} />
           <Route path="/dashboard/add_employee" element={<Add_Employee/>} />
           <Route path="/dashboard/edit_employee" element={<Edit_employee/>} />
         </Route>

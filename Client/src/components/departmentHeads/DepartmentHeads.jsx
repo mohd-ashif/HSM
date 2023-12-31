@@ -53,8 +53,8 @@ const DepartmentsHeads = () => {
                 <td>{departmentHead.description}</td>
                 <td>{departmentHead.select}</td>
                 <td>
-                  <Link to='/edit_heads' className='btn btn-success'>
-                    <i className='fas fa-edit'></i>
+                  <Link to={`/dashboard/edit_heads/${departmentHead._id}`} className='btn btn-success'>
+                    <i className='fas fa-edit'></i> 
                   </Link>
                   <button
                     className='btn btn-danger'

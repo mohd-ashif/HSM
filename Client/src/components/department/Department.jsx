@@ -57,7 +57,7 @@ const Departments = () => {
                   <Link to={`/dashboard/edit_department/${department._id}`} className='btn btn-success p-1'>
                     <i className='fas fa-edit'></i>
                   </Link>
-                  <button
+                  <button 
                     className='btn btn-danger p-1'
                     style={{ marginLeft: '0.5rem' }} 
                     onClick={() => handleDelete(department._id)}
