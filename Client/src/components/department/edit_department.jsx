@@ -45,8 +45,9 @@ function Edit_department() {
 
   return (
     <div>
-      <div className='d-flex vh-100 bg-white justify-content-center align-items-center vw-100 p-1'>
-        <div className='w-50 bg-white rounded p-3'>
+  <div className='vh-100 d-flex justify-content-center align-items-center'>
+      <div className='w-50 bg-white rounded p-3'>
+
           <form onSubmit={handleFormSubmit}>
             <h2>Edit Departments</h2>
             <div className='mb-2'>

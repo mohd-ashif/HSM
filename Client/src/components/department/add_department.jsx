@@ -35,8 +35,8 @@ const Add_departmentlist = () => {
   };
 
   return (
-    <div className='d-flex vh-100 bg-white justify-content-center align-items-center vw-100 p-1'>
-        <div className='w-50 bg-white rounded p-3'>
+    <div className='vh-100 d-flex justify-content-center align-items-center'>
+    <div className='w-50 bg-white rounded p-3'>
         <h2>Add Department</h2>
         <form onSubmit={submit}>
          
