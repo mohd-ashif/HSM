@@ -113,24 +113,24 @@ function Edit_Head() {
               <option value='Obstetrics'>Obstetrics</option>
             </select>
             {image && (
-  <div className='mb-2'>
-    <label>Image</label>
-    <input
-      type='file'
-      placeholder='Upload'
-      className='form-control'
-      onChange={handleImageChange}
-    />
-    <div>
-      Current Image:
-      <img
-        src={`http://localhost:3000/upload/${image.name}`}
-        alt="Current Department Image"
-        style={{ border: '1px solid black', width: '50px', height: '50px', borderRadius: '50%' }}
-      />
-    </div>
-  </div>
-)}
+              <div className='mb-2'>
+                <label>Image</label>
+                <input
+                  type='file'
+                  placeholder='Upload'
+                  className='form-control'
+                  onChange={handleImageChange}
+                />
+                <div>
+                  Current Image:
+                  <img
+                    src={`http://localhost:3000/upload/${image.name}`}
+                    alt="Current Department Image"
+                    style={{ border: '1px solid black', width: '50px', height: '50px', borderRadius: '50%' }}
+                  />
+                </div>
+              </div>
+            )}
 
             <div>
               <button className='btn btn-success' type="submit">Submit</button>

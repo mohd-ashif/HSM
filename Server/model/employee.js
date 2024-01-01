@@ -2,12 +2,12 @@ const mongoose = require("mongoose")
 
 const EmployeeSchema = new mongoose.Schema({
     name:String,
-    number:Number,
+    number: { type: String, required: true },
     description:String,
     age:String,
     image:String,
     selectDepartment:String,
-    selectHeads:String
+    selectHead:String
 
 })
 

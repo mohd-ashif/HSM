@@ -12,7 +12,7 @@ const Employee = () => {
   }, []);
 
   const handleDelete = (employeeId) => {
-   
+
     console.log(`Deleting employee with ID: ${employeeId}`);
   };
 
@@ -46,11 +46,16 @@ const Employee = () => {
                 <td>{employee.age}</td>
                 <td>{employee.number}</td>
                 <td>
-                  <img
-                    src={`http://localhost:3000/upload/${employee.image}`}
-                    alt="Employee Image"
-                    style={{ border: '1px solid black', width: '50px', height: '50px', borderRadius: '50%' }}
-                  />
+                  {employee.image ? (
+                    <img
+                      src={`http://localhost:3000/upload/${employee.image}`}
+                      alt="Employee Image"
+                      style={{ border: '1px solid black', width: '50px', height: '50px', borderRadius: '50%' }}
+                    />
+                  ) : (
+                    <span>No Image Available</span>
+                  )}
+
                 </td>
                 <td>{employee.description}</td>
                 <td>{employee.selectDepartment}</td>
