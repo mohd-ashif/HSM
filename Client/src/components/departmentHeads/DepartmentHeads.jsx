@@ -69,7 +69,7 @@ const DepartmentsHeads = () => {
                     <i className='fas fa-edit'></i>
                   </Link>
                   <button
-                    className='btn btn-danger'
+                    className='btn btn-danger me-2'
                     onClick={(e) => handleDelete(departmentHead._id)}
                   >
                     <i className='fas fa-trash-alt'></i>

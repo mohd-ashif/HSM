@@ -13,8 +13,22 @@ const Employee = () => {
 
   const handleDelete = (employeeId) => {
 
-    console.log(`Deleting employee with ID: ${employeeId}`);
+    if (!employeeId) {
+      console.error("invalid employee Id")
+
+      return
+    }
+
+    axios.delete(`http://localhost:3000/delete_employee/${employeeId}`)
+      .then(result => {
+        setEmployees(employees.filter(employee => employee._id !== (employeeId)))
+      })
+
+
+      .catch(error => console.error('Error deleting department head:', error));
   };
+
+
 
   return (
     <div className='px-5 mt-5'>
@@ -61,16 +75,19 @@ const Employee = () => {
                 <td>{employee.selectDepartment}</td>
                 <td>{employee.selectHead}</td>
                 <td>
-                  <Link to={`/edit_employee/${employee._id}`} className='btn btn-success'>
-                    Edit
-                  </Link>
-                  <button
-                    className='btn btn-danger'
-                    onClick={() => handleDelete(employee._id)}
-                  >
-                    Delete
-                  </button>
+                  <div className="d-flex">
+                    <Link to={`/dashboard/edit_employee/${employee._id}`} className='btn btn-success me-2'>
+                      <i className='fas fa-edit'></i>
+                    </Link>
+                    <button
+                      className='btn btn-danger'
+                      onClick={() => handleDelete(employee._id)}
+                    >
+                      <i className='fas fa-trash-alt'></i>
+                    </button>
+                  </div>
                 </td>
+
               </tr>
             ))}
           </tbody>

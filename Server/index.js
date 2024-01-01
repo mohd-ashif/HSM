@@ -167,38 +167,53 @@ app.delete('/delete_heads/:id', (req, res) => {
     .catch(err => res.json(err));
 });
 
+
 //add empolyee
 
-app.post("/dashboard/add_employee", upload.single('image'), (req, res) => {
- 
-const { name, age, number, description, selectDepartment, selectHead } = req.body;
+app.post("/dashboard/add_employee", upload.single('image'), async (req, res) => {
+  try {
+    const { name, age, number, description, selectDepartment, selectHead } = req.body;
+    const imagePath = req.file ? req.file.filename : null;
 
+    const newEmployee = await EmployeeModel.create({  name,age, number, description, selectDepartment,selectHead,image: imagePath });
 
-  const imagePath = req.file ? req.file.filename : null;
-
-  EmployeeModel.create({ name, age, number, description, selectDepartment, selectHead, image: imagePath })
-    .then(employee => res.json(employee))
-    .catch(err => res.json(err));
+    res.json(newEmployee);
+  } catch (err) {
+    res.status(500).json({ error: 'Internal Server Error', details: err.message });
+  }
 });
+
 
 //show employee
-app.get('/employee', (req, res) => {
-  EmployeeModel.find({})
-    .then(employee => res.json(employee))
-    .catch(err => res.json(err));
+app.get('/employee', async (req, res) => {
+  try {
+    const employees = await EmployeeModel.find({});
+    res.json(employees);
+  } catch (err) {
+    res.status(500).json({ error: 'Internal Server Error', details: err.message });
+  }
 });
 
 
-//get for edit employee 
-app.post('get_employee/:id', (req, res) => {
-  HeadsModel.findById({})
-  .then(employee => res.json(employee))
-  .catch(err => res.json(err))
 
-})
+// get for edit employee
+app.get('/get_employee/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const employee = await EmployeeModel.findById(id);
+
+    if (!employee) {
+      res.status(404).json({ error: 'Employee not found' });
+    } else {
+      res.json(employee);
+    }
+  } catch (err) {
+    res.status(500).json({ error: 'Internal Server Error', details: err.message });
+  }
+});
 
 
-//edit employee 
+// edit employee
 app.put('/edit_employee/:id', upload.single("image"), async (req, res) => {
   try {
     const id = req.params.id;
@@ -216,17 +231,33 @@ app.put('/edit_employee/:id', upload.single("image"), async (req, res) => {
       updatesData.image = req.file.filename;
     }
 
-    const updatedHeads = await HeadsModel.findByIdAndUpdate({ _id: id }, updatesData, { new: true });
+    const updatedEmployee = await EmployeeModel.findByIdAndUpdate(id, updatesData, { new: true });
 
-    if (!updatedHeads) {
-      res.status(404).json({ error: 'Heads not found' });
+    if (!updatedEmployee) {
+      res.status(404).json({ error: 'Employee not found' });
     } else {
-      res.json(updatedHeads);
+      res.json(updatedEmployee);
     }
   } catch (err) {
     res.status(500).json({ error: 'Internal Server Error', details: err.message });
   }
 });
+
+
+//emplyee delete 
+app.delete('/delete_employee/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const employee = await EmployeeModel.findByIdAndDelete(id);
+
+    return employee
+      ? res.json({ message: 'Employee deleted successfully' })
+      : res.status(404).json({ error: 'Employee not found' });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error', details: error.message });
+  }
+});
+
 
 
 // login 

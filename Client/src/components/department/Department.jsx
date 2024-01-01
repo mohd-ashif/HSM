@@ -54,16 +54,18 @@ const Departments = () => {
                 <td>{department.year}</td>
                 <td>{department.description}</td>
                 <td>
-                  <Link to={`/dashboard/edit_department/${department._id}`} className='btn btn-success p-2'>
-                    <i className='fas fa-edit'></i>
+                  <div className="d-flex">
+                  <Link to={`/dashboard/edit_department/${department._id}`} className='btn btn-success me-2'>
+                  <i className='fas fa-edit'></i>
                   </Link>
                   <button 
-                    className='btn btn-danger p-2'
+                    className='btn btn-danger me-2'
                     style={{ marginLeft: '0.5rem' }} 
                     onClick={() => handleDelete(department._id)}
                   >
                     <i className='fas fa-trash-alt'></i>
                   </button>
+                  </div>
                 </td>
               </tr>
             ))}
