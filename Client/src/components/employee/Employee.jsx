@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from "axios";
 
-const Departments = () => {
+const Employee = () => {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
-   
+    axios.get("http://localhost:3000/employee")
+      .then(result => setEmployees(result.data))
+      .catch(err => console.log(err));
   }, []);
 
-  const handleDelete = () => {
-  
+  const handleDelete = (employeeId) => {
+   
+    console.log(`Deleting employee with ID: ${employeeId}`);
   };
 
   return (
@@ -24,11 +28,11 @@ const Departments = () => {
         <table className='table'>
           <thead>
             <tr>
-              <th> Name</th>
+              <th>Name</th>
               <th>Age</th>
               <th>Number</th>
               <th>Profile Image</th>
-              <th>description</th>
+              <th>Description</th>
               <th>Select Department</th>
               <th>Select Head</th>
               <th>Operation</th>
@@ -41,18 +45,23 @@ const Departments = () => {
                 <td>{employee.name}</td>
                 <td>{employee.age}</td>
                 <td>{employee.number}</td>
-                <td>{employee.image}</td>
+                <td>
+                  <img
+                    src={`http://localhost:3000/upload/${employee.image}`}
+                    alt="Employee Image"
+                    style={{ border: '1px solid black', width: '50px', height: '50px', borderRadius: '50%' }}
+                  />
+                </td>
                 <td>{employee.description}</td>
                 <td>{employee.selectDepartment}</td>
                 <td>{employee.selectHead}</td>
-             
                 <td>
-                  <Link to='/edit_department' className='btn btn-success'>
+                  <Link to={`/edit_employee/${employee._id}`} className='btn btn-success'>
                     Edit
                   </Link>
                   <button
                     className='btn btn-danger'
-                    onClick={(e) => handleDelete()}
+                    onClick={() => handleDelete(employee._id)}
                   >
                     Delete
                   </button>
@@ -66,4 +75,4 @@ const Departments = () => {
   );
 };
 
-export default Departments;
+export default Employee;

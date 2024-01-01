@@ -167,8 +167,27 @@ app.delete('/delete_heads/:id', (req, res) => {
     .catch(err => res.json(err));
 });
 
+//add empolyee
 
-// login & signup
+app.post("/dashboard/add_employee", upload.single('image'), (req, res) => {
+  const { name, age, number, description, selectDepartment, selectHead } = req.body;
+  const imagePath = req.file ? req.file.filename : null;
+
+  EmployeeModel.create({ name, age, number, description, selectDepartment, selectHead, image: imagePath })
+    .then(employee => res.json(employee))
+    .catch(err => res.json(err));
+});
+
+//show employee
+app.get('/employee', (req, res) => {
+  EmployeeModel.find({})
+    .then(employee => res.json(employee))
+    .catch(err => res.json(err));
+});
+
+
+
+// login 
 
 app.post("/login", (req, res) => {
   const { email, password } = req.body;

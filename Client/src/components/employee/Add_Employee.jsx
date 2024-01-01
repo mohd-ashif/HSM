@@ -1,29 +1,58 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const Add_Heads = () => {
+const AddEmployee = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [description, setDescription] = useState('');
   const [age, setAge] = useState('');
   const [image, setImage] = useState('');
-  const [selecteDepartment, setSelectDepartment] = useState('');
-  const [selecteHead, setSelectHead] = useState('');
+  const [selectedDepartment, setSelectDepartment] = useState('');
+  const [selectedHead, setSelectHead] = useState('');
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('number', number);
+    formData.append('description', description);
+    formData.append('age', age);
+    formData.append('image', image);
+    formData.append('selectDepartment', selectedDepartment);
+    formData.append('selectHead', selectedHead);
+
+    try {
+      const response = await axios.post('http://localhost:3000/dashboard/add_employee', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      console.log('Form Data:', formData);
+      console.log('Response:', response.data);
+
+      
+      navigate('/dashboard/employee');
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
+
   return (
-    <div className='d-flex justify-content-center align-items-center h-7'>
-      <div className='p-3 rounded w-25 border'>
-        <h2>Add Department</h2>
+    <div className='vh-100 d-flex justify-content-center align-items-center'>
+      <div className='w-50 bg-white rounded p-3'>
+        <h2>Add Employee</h2>
         <form onSubmit={handleSubmit}>
           <div className='mb-3'>
-            <label htmlFor="departmentName"><strong>Name</strong></label>
+            <label htmlFor="employeeName"><strong>Name</strong></label>
             <input
               type="text"
-              name='departmentName'
+              name='employeeName'
               placeholder='Enter Name'
               className='form-control rounded-0'
               value={name}
@@ -31,10 +60,10 @@ const Add_Heads = () => {
             />
           </div>
           <div className='mb-3'>
-            <label htmlFor="category1"><strong>Age</strong></label>
+            <label htmlFor="age"><strong>Age</strong></label>
             <input
               type="text"
-              name='yearFounded'
+              name='age'
               placeholder='Enter Age'
               className='form-control rounded-0'
               value={age}
@@ -43,7 +72,7 @@ const Add_Heads = () => {
           </div>
 
           <div className='mb-3'>
-            <label htmlFor="category1"><strong>Number</strong></label>
+            <label htmlFor="number"><strong>Number</strong></label>
             <input
               type="text"
               name='number'
@@ -55,7 +84,7 @@ const Add_Heads = () => {
           </div>
 
           <div className='mb-3'>
-            <label htmlFor="category2"><strong>Description</strong></label>
+            <label htmlFor="description"><strong>Description</strong></label>
             <input
               type="text"
               name='description'
@@ -66,7 +95,6 @@ const Add_Heads = () => {
             />
           </div>
 
-        
           <div className='mb-3'>
             <label htmlFor="department"><strong>Select Department</strong></label>
             <select
@@ -84,7 +112,6 @@ const Add_Heads = () => {
             </select>
           </div>
 
-         
           <div className='mb-3'>
             <label htmlFor="head"><strong>Select Department Head</strong></label>
             <select
@@ -94,7 +121,6 @@ const Add_Heads = () => {
               onChange={(e) => setSelectHead(e.target.value)}
             >
               <option value=''>Select Department Head</option>
-           
               <option value='Head1'>Head1</option>
               <option value='Head2'>Head2</option>
               <option value='Head3'>Head3</option>
@@ -107,7 +133,7 @@ const Add_Heads = () => {
               type="file"
               accept="image/*"
               name='image'
-              onChange={(e) => setImage(e.target.value)}
+              onChange={(e) => setImage(e.target.files[0])}
               className='form-control rounded-0'
             />
           </div>
@@ -119,4 +145,4 @@ const Add_Heads = () => {
   );
 };
 
-export default Add_Heads;
+export default AddEmployee;
