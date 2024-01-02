@@ -21,6 +21,8 @@ import View_department from './components/card/department';
 import View_employee from './components/card/Employee';
 import Dash from './components/Dash';
 import Profile_employee from './components/profile/profileEmp';
+import Profile_head from './components/profile/ProfileHead';
+import Profile_department from './components/profile/profileDep';
 
 
 
@@ -48,6 +50,8 @@ function App() {
         <Route path='/view_department' element={<View_department />} />
         <Route path='/view_employee' element={<View_employee />} />
         <Route path='/Profile_employee/:id' element={<Profile_employee />} />
+        <Route path='/profile_head/:id' element={<Profile_head />} />
+        <Route path='/profile_department/:id' element={< Profile_department />} />
 
       </Routes> 
     </Router>

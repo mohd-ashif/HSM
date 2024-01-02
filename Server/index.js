@@ -273,14 +273,43 @@ app.get('/profile_employee/:id', (req, res) => {
         res.json(employee);
       }
     })
+    
+});
+
+
+//get data for Head profile by id
+app.get('/profile_head/:id', (req, res) => {
+  const id = req.params.id;
+  HeadsModel.findById(id)
+    .then(heads => {
+      if (!heads) {
+        res.status(404).json({ error: "Employee not found" }); 
+      } else {
+        res.json(heads); 
+      }
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'Internal Server Error', details: err.message });
+    });
+});
+
+// get data for department by id
+app.get("/profile_department/:id", (req, res) => {
+  const id = req.params.id;
+  DepartmentModel.findById(id)
+    .then(department => {
+      if (!department) {
+        res.status(404).json({ error: "Department not found" });
+      } else {
+        res.json(department);
+      }
+    })
     .catch(err => {
       res.status(500).json({ error: 'Internal Server Error', details: err.message });
     });
 });
 
 
-////get data for Head profile by id
-app.get('')
 
 // login 
 
