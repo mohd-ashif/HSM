@@ -59,7 +59,7 @@ const Departments = () => {
                   <i className='fas fa-edit'></i>
                   </Link>
 
-                  <Link to="/view_department" className='btn btn-secondary p-2 m-2'>
+                  <Link to="" className='btn btn-secondary p-2 m-2'>
                     <i className='fas fa-eye'></i>
                   </Link>
 

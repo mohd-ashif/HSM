@@ -5,7 +5,7 @@ import axios from 'axios';
 const DepartmentsHeads = () => {
   const [departmentHeads, setDepartmentHeads] = useState([]);
 
-  useEffect(() => {
+  useEffect(() => {         
     axios.get('http://localhost:3000/heads')
       .then(result => setDepartmentHeads(result.data))
       .catch(err => console.log(err));
@@ -69,7 +69,7 @@ const DepartmentsHeads = () => {
                     <i className='fas fa-edit'></i>
                   </Link>
 
-                  <Link to="/view_head" className='btn btn-secondary p-2 m-2'>
+                  <Link to="" className='btn btn-secondary p-2 m-2'>
                     <i className='fas fa-eye'></i>
                   </Link>
 

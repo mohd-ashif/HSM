@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { CiHospital1 } from "react-icons/ci";
-import axios from "axios";
+import { BsPerson } from 'react-icons/bs';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -16,6 +16,12 @@ const Dashboard = () => {
             <ul className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
               <li>
                 <i className="p-3 fs-3 bi bi-hospital ms-5"></i>
+              </li>
+              <li className="w-100">
+                <Link to="/dashboard/dash" className="nav-link text-dark px-0 align-middle">
+                <BsPerson size={30} color="" />
+                  <span className="ms-2 d-none d-sm-inline">Dashboard</span>
+                </Link>
               </li>
               <li className="w-100">
                 <Link to="/dashboard/departments" className="nav-link text-dark px-0 align-middle">
@@ -46,7 +52,7 @@ const Dashboard = () => {
         </div>
         <div className="col p-0 m-0">
         
-          <div className="p-2 d-flex justify-content-center shadow">
+          <div className="p-2 d-flex justify-content-center shadow text-dark">
             <h4>Hospital Management System</h4>
           </div>
           <Outlet />

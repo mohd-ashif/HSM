@@ -19,6 +19,7 @@ import Edit_employee from './components/employee/Edit_employee';
 import View_head from './components/card/head';
 import View_department from './components/card/department';
 import View_employee from './components/card/Employee';
+import Dash from './components/Dash';
 
 
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/" element={<Sign />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />}>
+        <Route path="/dashboard/dash" element={<Dash/>} />
           <Route path="/dashboard/departments" element={<Departments />} />
           <Route path="/dashboard/heads" element={<DepartmentHeads />} />
           <Route path="/dashboard/employee" element={<Employee />} />

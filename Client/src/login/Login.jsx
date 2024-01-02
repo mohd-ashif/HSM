@@ -15,7 +15,7 @@ const Login = () => {
         console.log(response.data);
 
         if (response.data === "Success") {
-          navigate('/dashboard');
+          navigate('/dashboard/dash');
         } else {
           console.log("Login failed");
         }
