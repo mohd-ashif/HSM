@@ -55,11 +55,16 @@ const Departments = () => {
                 <td>{department.description}</td>
                 <td>
                   <div className="d-flex">
-                  <Link to={`/dashboard/edit_department/${department._id}`} className='btn btn-success me-2'>
+                  <Link to={`/dashboard/edit_department/${department._id}`} className='btn btn-success  p-2 m-2'>
                   <i className='fas fa-edit'></i>
                   </Link>
+
+                  <Link to="/view_department" className='btn btn-secondary p-2 m-2'>
+                    <i className='fas fa-eye'></i>
+                  </Link>
+
                   <button 
-                    className='btn btn-danger me-2'
+                    className='btn btn-danger  p-2 m-2'
                     style={{ marginLeft: '0.5rem' }} 
                     onClick={() => handleDelete(department._id)}
                   >

@@ -20,7 +20,7 @@ const DepartmentsHeads = () => {
     axios.delete(`http://localhost:3000/delete_heads/${departmentHeadId}`)
 
       .then(result => {
-      
+
         setDepartmentHeads(departmentHeads.filter(head => head._id !== departmentHeadId));
       })
       .catch(error => console.error('Error deleting department head:', error));
@@ -44,13 +44,13 @@ const DepartmentsHeads = () => {
               <th>Profile Image</th>
               <th>Employee Number</th>
               <th>Description</th>
-              <th>Select</th>
+              <th>Department </th>
               <th>Operation</th>
             </tr>
           </thead>
 
           <tbody>
-            {departmentHeads.map((departmentHead,index) => (
+            {departmentHeads.map((departmentHead, index) => (
               <tr key={index}>
                 <td>{departmentHead.name}</td>
                 <td>{departmentHead.age}</td>
@@ -65,17 +65,22 @@ const DepartmentsHeads = () => {
                 <td>{departmentHead.description}</td>
                 <td>{departmentHead.select}</td>
                 <td className="d-flex">
-                  <Link to={`/dashboard/edit_heads/${departmentHead._id}`} className='btn btn-success me-2'>
+                  <Link to={`/dashboard/edit_heads/${departmentHead._id}`} className='btn btn-success p-2 m-2'>
                     <i className='fas fa-edit'></i>
                   </Link>
+
+                  <Link to="/view_head" className='btn btn-secondary p-2 m-2'>
+                    <i className='fas fa-eye'></i>
+                  </Link>
+
                   <button
-                    className='btn btn-danger me-2'
+                    className='btn btn-danger p-2 m-2'
                     onClick={(e) => handleDelete(departmentHead._id)}
                   >
                     <i className='fas fa-trash-alt'></i>
                   </button>
-
                 </td>
+
 
               </tr>
             ))}

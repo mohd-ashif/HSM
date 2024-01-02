@@ -26,8 +26,7 @@ const Add_departmentlist = () => {
       });
 
       console.log('Response:', response.data);
-
-     
+      
       navigate('/dashboard/departments');
     } catch (error) {
       console.error('Error:', error);

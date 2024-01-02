@@ -47,8 +47,8 @@ const Employee = () => {
               <th>Number</th>
               <th>Profile Image</th>
               <th>Description</th>
-              <th>Select Department</th>
-              <th>Select Head</th>
+              <th> Department</th>
+              <th> Head</th>
               <th>Operation</th>
             </tr>
           </thead>
@@ -76,11 +76,16 @@ const Employee = () => {
                 <td>{employee.selectHead}</td>
                 <td>
                   <div className="d-flex">
-                    <Link to={`/dashboard/edit_employee/${employee._id}`} className='btn btn-success me-2'>
+                    <Link to={`/dashboard/edit_employee/${employee._id}`} className='btn btn-success  p-2 m-2'>
                       <i className='fas fa-edit'></i>
                     </Link>
+
+                    <Link to="/view_employee" className='btn btn-secondary p-2 m-2'>
+                    <i className='fas fa-eye'></i>
+                  </Link>
+
                     <button
-                      className='btn btn-danger'
+                      className='btn btn-danger  p-2 m-2'
                       onClick={() => handleDelete(employee._id)}
                     >
                       <i className='fas fa-trash-alt'></i>

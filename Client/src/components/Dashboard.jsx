@@ -50,10 +50,6 @@ const Dashboard = () => {
             <h4>Hospital Management System</h4>
           </div>
           <Outlet />
-        
-       
-         
-         
         </div>
       </div>
     </div>

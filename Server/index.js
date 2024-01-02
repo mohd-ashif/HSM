@@ -17,7 +17,6 @@ app.use(cors());
 app.use(express.json());
 app.use('/upload', express.static('upload'));
 
-
 // DB
 try {
   mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -35,7 +34,12 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage }); 
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5, // 5 MB limit
+  },
+});
 
 // Add department into DB
 app.post('/dashboard/add_departments', upload.single('image'), (req, res) => {
