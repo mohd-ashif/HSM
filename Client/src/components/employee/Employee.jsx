@@ -80,7 +80,7 @@ const Employee = () => {
                       <i className='fas fa-edit'></i>
                     </Link>
 
-                    <Link to="" className='btn btn-secondary p-2 m-2'>
+                    <Link to={`/profile_employee/${employee._id}`} className='btn btn-secondary p-2 m-2'>
                     <i className='fas fa-eye'></i>
                   </Link>
 

@@ -262,7 +262,25 @@ app.delete('/delete_employee/:id', async (req, res) => {
   }
 });
 
-//
+//get data for Employee profile by id
+app.get('/profile_employee/:id', (req, res) => {
+  const id = req.params.id;
+  EmployeeModel.findById(id)
+    .then(employee => {
+      if (!employee) {
+        res.status(404).json({ error: 'Employee not found' });
+      } else {
+        res.json(employee);
+      }
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'Internal Server Error', details: err.message });
+    });
+});
+
+
+////get data for Head profile by id
+app.get('')
 
 // login 
 

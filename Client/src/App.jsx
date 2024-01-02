@@ -20,6 +20,7 @@ import View_head from './components/card/head';
 import View_department from './components/card/department';
 import View_employee from './components/card/Employee';
 import Dash from './components/Dash';
+import Profile_employee from './components/profile/profileEmp';
 
 
 
@@ -46,6 +47,7 @@ function App() {
         <Route path="/view_head" element={<View_head />} />
         <Route path='/view_department' element={<View_department />} />
         <Route path='/view_employee' element={<View_employee />} />
+        <Route path='/Profile_employee/:id' element={<Profile_employee />} />
 
       </Routes> 
     </Router>

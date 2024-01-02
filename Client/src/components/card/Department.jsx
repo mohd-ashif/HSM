@@ -15,7 +15,7 @@ const View_department = () => {
   return (
     <div className='container mt-5'>
       <div className='d-flex justify-content-center'>
-        <h3>Department List</h3>
+        <h3>Department Card</h3>
       </div>
    
 

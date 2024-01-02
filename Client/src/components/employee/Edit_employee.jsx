@@ -27,7 +27,7 @@ function Edit_employee() {
       })
       .catch(err => console.log(err));
   }, [id]);
-  
+
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -104,62 +104,58 @@ function Edit_employee() {
               />
             </div>
 
-          <div className='mb-3'>
-  <label htmlFor="department"><strong>Select Department</strong></label>
-  <select
-    name='department'
-    className='form-control rounded-0'
-    value={selectDepartment}
-    onChange={(e) => setSelectDepartment(e.target.value)}
-  >
-              <option value=''>Select Department</option>
-              <option value='Cardiology'>Cardiology</option>
-              <option value='Pediatrics'>Pediatrics</option>
-              <option value='Radiology'>Radiology</option>
-              <option value='Surgery'>Surgery</option>
-              <option value='Emergency Medicine'>Emergency Medicine</option>
-            </select>
-          </div>
+            <div className='mb-3'>
+              <label htmlFor="department"><strong>Select Department</strong></label>
+              <select
+                name='department'
+                className='form-control rounded-0'
+                value={selectDepartment}
+                onChange={(e) => setSelectDepartment(e.target.value)}
+              >
+                <option value=''>Select Department</option>
+                <option value='Cardiology'>Cardiology</option>
+                <option value='Pediatrics'>Pediatrics</option>
+                <option value='Radiology'>Radiology</option>
+                <option value='Surgery'>Surgery</option>
+                <option value='Emergency Medicine'>Emergency Medicine</option>
+              </select>
+            </div>
 
-          <div className='mb-3'>
-  <label htmlFor="head"><strong>Select Department Head</strong></label>
-  <select
-    name='head'
-    className='form-control rounded-0'
-    value={selectHead}
-    onChange={(e) => setSelectHead(e.target.value)}
-            >
-              <option value=''>Select Department Head</option>
-              <option value='Head1'>Head1</option>
-              <option value='Head2'>Head2</option>
-              <option value='Head3'>Head3</option>
-            </select>
-          </div>
+            <div className='mb-3'>
+              <label htmlFor="head"><strong>Select Department Head</strong></label>
+              <select
+                name='head'
+                className='form-control rounded-0'
+                value={selectHead}
+                onChange={(e) => setSelectHead(e.target.value)}
+              >
+                <option value=''>Select Department Head</option>
+                <option value='Head1'>Head1</option>
+                <option value='Head2'>Head2</option>
+                <option value='Head3'>Head3</option>
+              </select>
+            </div>
 
-          {image && (
-  <div className='mb-2'>
-    <input
-      type='file'
-      placeholder='Upload'
-      className='form-control'
-      onChange={handleImageChange}
-    />
-    <div>
-      Current Image:
-      {image.name && (
-        <img
-          src={`http://localhost:3000/upload/${image.name}`}
-          alt="Current Department Image"
-          style={{ border: '1px solid black', width: '50px', height: '50px', borderRadius: '50%' }}
-        />
-      )}
-    </div>
-  </div>
-)}
-
-
-
-
+            {image && (
+              <div className='mb-2'>
+                <input
+                  type='file'
+                  placeholder='Upload'
+                  className='form-control'
+                  onChange={handleImageChange}
+                />
+                <div>
+                  Current Image:
+                  {image.name && (
+                    <img
+                      src={`http://localhost:3000/upload/${image.name}`}
+                      alt="Current Department Image"
+                      style={{ border: '1px solid black', width: '50px', height: '50px', borderRadius: '50%' }}
+                    />
+                  )}
+                </div>
+              </div>
+            )}
             <div>
               <button className='btn btn-success' type="submit">Submit</button>
             </div>

@@ -175,7 +175,7 @@ body {
 }
 
 .card:first-child {
-  background-color: #2962ff;
+  background-color: #ffffff;
 }
 
 .card:nth-child(2) {
@@ -258,6 +258,6 @@ body {
 }
 
 .card-body{
-  background-color: #0651ac; /* Replace with black (#000) or any other desired color */
-  color: #ffffff; /* Set text color to white or any contrasting color */
+  background-color: #5856b8; 
+  color: #ffffff; 
 }

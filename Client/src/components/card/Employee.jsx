@@ -16,7 +16,7 @@ const View_employee = () => {
   return (
     <div className='container mt-5'>
       <div className='d-flex justify-content-center'>
-        <h3>Employee List</h3>
+        <h3>Employee Card</h3>
       </div>
      
 
