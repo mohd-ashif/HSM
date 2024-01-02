@@ -23,7 +23,7 @@ const Departments = () => {
   return (
     <div className='px-5 mt-5'>
       <div className='d-flex justify-content-center'>
-        <h3>Department Card</h3>
+        <h3>Department List</h3>
       </div>
       <Link to='/dashboard/add_departments' className='btn btn-success'>
         Add Department
@@ -59,7 +59,7 @@ const Departments = () => {
                   <i className='fas fa-edit'></i>
                   </Link>
 
-                  <Link to="" className='btn btn-secondary p-2 m-2'>
+                  <Link to="/view_department" className='btn btn-secondary p-2 m-2'>
                     <i className='fas fa-eye'></i>
                   </Link>
 
