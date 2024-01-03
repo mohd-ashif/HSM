@@ -42,7 +42,7 @@ const DepartmentsHeads = () => {
               <th>Name</th>
               <th>Age</th>
               <th>Profile Image</th>
-              <th>Employee Number</th>
+              <th>Head Number</th>
               <th>Description</th>
               <th>Department </th>
               <th>Operation</th>

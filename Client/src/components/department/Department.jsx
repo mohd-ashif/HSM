@@ -58,8 +58,8 @@ const Departments = () => {
                   <Link to={`/dashboard/edit_department/${department._id}`} className='btn btn-success  p-2 m-2'>
                   <i className='fas fa-edit'></i>
                   </Link>
-
-                  <Link to={`/profile_head/${department._id}`}className='btn btn-secondary p-2 m-2'>
+                
+                  <Link to={`/profile_department/${department._id}`}className='btn btn-secondary p-2 m-2'>
                     <i className='fas fa-eye'></i>
                   </Link>
 
