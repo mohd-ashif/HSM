@@ -7,9 +7,9 @@ const AddEmployee = () => {
   const [number, setNumber] = useState('');
   const [description, setDescription] = useState('');
   const [age, setAge] = useState('');
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(null);
   const [selectedDepartment, setSelectDepartment] = useState('');
-  const [selectedHead, setSelectHead] = useState('');
+  const [selectHead, setselectHead] = useState('');
 
   const navigate = useNavigate();
 
@@ -21,9 +21,9 @@ const AddEmployee = () => {
     formData.append('number', number);
     formData.append('description', description);
     formData.append('age', age);
-    formData.append('image', image);
+    formData.append('image', image);  
     formData.append('selectDepartment', selectedDepartment);
-    formData.append('selectHead', selectedHead);
+    formData.append('selectHead', selectHead); 
 
     try {
       const response = await axios.post('http://localhost:3000/dashboard/add_employee', formData, {
@@ -35,13 +35,15 @@ const AddEmployee = () => {
       console.log('Form Data:', formData);
       console.log('Response:', response.data);
 
-      
       navigate('/dashboard/employee');
     } catch (error) {
       console.error('Error:', error);
     }
   };
 
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]); 
+  };
 
   return (
     <div className='vh-100 d-flex justify-content-center align-items-center'>
@@ -117,13 +119,13 @@ const AddEmployee = () => {
             <select
               name='head'
               className='form-control rounded-0'
-              value={selectedHead}
-              onChange={(e) => setSelectHead(e.target.value)}
+              value={selectHead}
+              onChange={(e) => setselectHead(e.target.value)}
             >
               <option value=''>Select Department Head</option>
-              <option value='Head1'>Head1</option>
-              <option value='Head2'>Head2</option>
-              <option value='Head3'>Head3</option>
+              <option value='Head1'>Head1wd</option>
+              <option value='Head2'>Head2wed</option>
+              <option value='Head3'>Headqwq3</option>
             </select>
           </div>
 

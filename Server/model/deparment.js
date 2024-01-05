@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const DepartmentSchema = new mongoose.Schema({
-        name:String,
+        name: {type: String, unique: true, },
         year:Number,
         description:String,
         image:String

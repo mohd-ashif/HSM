@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 
-const Profile_head = () => {
+const unique_head = () => {
     const [profileHead, setProfileHead] = useState({});
     const { id } = useParams();  //
 
@@ -42,8 +42,7 @@ const Profile_head = () => {
                                 <strong>Age:</strong> {profileHead.age}<br />
 
                                 <br />
-                                <strong>Department:</strong> <Link to={`/unique_department/${profileHead.select}`}>{profileHead.select}</Link><br />
-
+                                <strong>Department:</strong> <Link to={`/unique_department/${name}`}>{profileHead.select}</Link><br />
                                 <br />
                             </p>
                         </div>
@@ -54,4 +53,4 @@ const Profile_head = () => {
     );
 };
 
-export default Profile_head;
+export default unique_head ;

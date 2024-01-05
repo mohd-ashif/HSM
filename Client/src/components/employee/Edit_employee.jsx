@@ -35,24 +35,24 @@ function Edit_employee() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
+  
     const formData = new FormData();
     formData.append('image', image);
     formData.append('name', name);
     formData.append('number', number);
-    formData.append('age', age);
+    formData.append('age', age);  
     formData.append('description', description);
-    formData.append('select', selectHead);
-    formData.append('select', selectDepartment);
-
+    formData.append('selectHead', selectHead); // Use 'selectHeads' as the key
+    formData.append('selectDepartment', selectDepartment); // Use 'selectDepartment' as the key
+  
     axios.put(`http://localhost:3000/edit_employee/${id}`, formData)
       .then(result => {
         console.log(result);
         navigate('/dashboard/employee');
-
       })
       .catch(err => console.log(err));
   };
+  
 
   return (
     <div>
@@ -115,9 +115,9 @@ function Edit_employee() {
                 <option value=''>Select Department</option>
                 <option value='Cardiology'>Cardiology</option>
                 <option value='Pediatrics'>Pediatrics</option>
-                <option value='Radiology'>Radiology</option>
-                <option value='Surgery'>Surgery</option>
-                <option value='Emergency Medicine'>Emergency Medicine</option>
+                <option value='Radiology'>Orthopedics</option>
+                <option value='Surgery'>Oncology</option>
+                <option value='Emergency Medicine'>Obstetrics</option>
               </select>
             </div>
 
@@ -129,9 +129,9 @@ function Edit_employee() {
                 value={selectHead}
                 onChange={(e) => setSelectHead(e.target.value)}
               >
-                <option value=''>Select Department Head</option>
+                
                 <option value='Head1'>Head1</option>
-                <option value='Head2'>Head2</option>
+                <option value='Head2'>Headwq</option>
                 <option value='Head3'>Head3</option>
               </select>
             </div>

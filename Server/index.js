@@ -171,7 +171,6 @@ app.delete('/delete_heads/:id', (req, res) => {
     .catch(err => res.json(err));
 });
 
-
 //add empolyee
 
 app.post("/dashboard/add_employee", upload.single('image'), async (req, res) => {
@@ -179,14 +178,20 @@ app.post("/dashboard/add_employee", upload.single('image'), async (req, res) => 
     const { name, age, number, description, selectDepartment, selectHead } = req.body;
     const imagePath = req.file ? req.file.filename : null;
 
-    const newEmployee = await EmployeeModel.create({  name,age, number, description, selectDepartment,selectHead,image: imagePath });
-
+    const newEmployee = await EmployeeModel.create({
+      name,
+      age,
+      number,
+      description,
+      selectDepartment,
+      selectHead,  // Updated to selectHead
+      image: imagePath
+    });
     res.json(newEmployee);
   } catch (err) {
     res.status(500).json({ error: 'Internal Server Error', details: err.message });
   }
 });
-
 
 //show employee
 app.get('/employee', async (req, res) => {
@@ -197,8 +202,6 @@ app.get('/employee', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error', details: err.message });
   }
 });
-
-
 
 // get for edit employee
 app.get('/get_employee/:id', async (req, res) => {
@@ -216,9 +219,8 @@ app.get('/get_employee/:id', async (req, res) => {
   }
 });
 
-
 // edit employee
-app.put('/edit_employee/:id', upload.single("image"), async (req, res) => {
+app.put('/edit_employee/:id', upload.single('image'), async (req, res) => {
   try {
     const id = req.params.id;
 
@@ -228,7 +230,7 @@ app.put('/edit_employee/:id', upload.single("image"), async (req, res) => {
       description: req.body.description,
       selectDepartment: req.body.selectDepartment,
       selectHead: req.body.selectHead,
-      number: Number(req.body.number)
+      number: Number(req.body.number),
     };
 
     if (req.file) {
@@ -238,14 +240,19 @@ app.put('/edit_employee/:id', upload.single("image"), async (req, res) => {
     const updatedEmployee = await EmployeeModel.findByIdAndUpdate(id, updatesData, { new: true });
 
     if (!updatedEmployee) {
-      res.status(404).json({ error: 'Employee not found' });
-    } else {
-      res.json(updatedEmployee);
+      return res.status(404).json({ error: 'Employee not found' });
     }
+
+    res.json(updatedEmployee);
   } catch (err) {
+    console.error(err);
+
+    // Log the specific error message for better debugging
     res.status(500).json({ error: 'Internal Server Error', details: err.message });
   }
 });
+
+
 
 
 //emplyee delete 
@@ -309,6 +316,23 @@ app.get("/profile_department/:id", (req, res) => {
     });
 });
 
+
+
+// route to get unique department by name
+app.get('/unique_department/:name', (req, res) => {
+  const name = req.params.name;
+  DepartmentModel.findOne({ name: name })
+    .then(department => {
+      if (!department) {
+        res.status(404).json({ error: "Department not found" });
+      } else {
+        res.json(department);
+      }
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'Internal Server Error', details: err.message });
+    });
+});
 
 
 // login 

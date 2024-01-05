@@ -3,7 +3,7 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 
 import './App.css';
 import Login from './login/Login';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Sign from './login/Sign';
 import Dashboard from './components/Dashboard';
 import Departments from './components/department/Department';
@@ -23,9 +23,7 @@ import Dash from './components/Dash';
 import Profile_employee from './components/profile/profileEmp';
 import Profile_head from './components/profile/ProfileHead';
 import Profile_department from './components/profile/profileDep';
-
-
-
+import Unique_department from './components/unique/UniqueDepartment';
 
 function App() {
   return (
@@ -34,7 +32,7 @@ function App() {
         <Route path="/" element={<Sign />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />}>
-        <Route path="/dashboard/dash" element={<Dash/>} />
+          <Route path="/dashboard/dash" element={<Dash />} />
           <Route path="/dashboard/departments" element={<Departments />} />
           <Route path="/dashboard/heads" element={<DepartmentHeads />} />
           <Route path="/dashboard/employee" element={<Employee />} />
@@ -43,17 +41,22 @@ function App() {
           <Route path="/dashboard/edit_department/:id" element={<Edit_department />} />
           <Route path="/dashboard/add_heads" element={<Add_Heads />} />
           <Route path="/dashboard/edit_heads/:id" element={<Edit_Heads />} />
-          <Route path="/dashboard/add_employee" element={<Add_Employee/>} />
+          <Route path="/dashboard/add_employee" element={<Add_Employee />} />
           <Route path="/dashboard/edit_employee/:id" element={<Edit_employee />} />
         </Route>
-        <Route path="/view_head" element={<View_head />} />
-        <Route path='/view_department' element={<View_department />} />
-        <Route path='/view_employee' element={<View_employee />} />
-        <Route path='/Profile_employee/:id' element={<Profile_employee />} />
-        <Route path='/profile_head/:id' element={<Profile_head />} />
-        <Route path='/profile_department/:id' element={< Profile_department />} />
 
-      </Routes> 
+        <Route path="/view_head" element={<View_head />} />
+        <Route path="/view_department" element={<View_department />} />
+        <Route path="/view_employee" element={<View_employee />} />
+        <Route path="/Profile_employee/:id" element={<Profile_employee />} />
+        <Route path="/profile_head/:id" element={<Profile_head />} />
+        <Route path="/profile_department/:id" element={<Profile_department />} />
+        <Route path="/unique_department/:name" element={<Unique_department />} />
+
+        
+        {/* Fallback route */}
+        {/* <Route path="*" element={<Navigate to="/" />} /> */}
+      </Routes>
     </Router>
   );
 }
