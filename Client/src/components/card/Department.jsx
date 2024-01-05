@@ -11,13 +11,18 @@ const View_department = () => {
       .catch(err => console.log(err));
   }, []);
 
- 
   return (
     <div className='container mt-5'>
+      <div className='d-flex justify-content-between mb-3'>
+        <div>
+          <Link to="/dashboard/dash" className="btn btn-secondary">Exit</Link>
+        </div>
+        
+      </div>
+
       <div className='d-flex justify-content-center'>
         <h3>Department Card</h3>
       </div>
-   
 
       <div className='row mt-3'>
         {departments.map((department) => (
@@ -34,8 +39,6 @@ const View_department = () => {
                 <h5 className='card-title'>{department.name}</h5>
                 <p className='card-text'>Year Founded: {department.year}</p>
                 <p className='card-text'>Description: {department.description}</p>
-
-                
               </div>
             </div>
           </div>

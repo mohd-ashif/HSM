@@ -18,6 +18,7 @@ const View_head = () => {
       <div className='d-flex justify-content-center'>
         <h3>Department Heads Card</h3>
       </div>
+      <Link to="/dashboard/dash" className="btn btn-secondary btn-sm">Back</Link>
    
 
       <div className='row mt-3'>

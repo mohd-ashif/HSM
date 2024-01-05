@@ -11,14 +11,14 @@ const View_employee = () => {
       .catch(err => console.log(err));
   }, []);
 
- 
-
   return (
     <div className='container mt-5'>
-      <div className='d-flex justify-content-center'>
+      <div className='d-flex justify-content-center mb-3'>
+       
         <h3>Employee Card</h3>
+        
       </div>
-     
+      <Link to="/dashboard/dash" className="btn btn-secondary btn-sm">Back</Link>
 
       <div className='row mt-3'>
         {employees.map((employee, index) => (
@@ -44,8 +44,6 @@ const View_employee = () => {
                 <p className='card-text'>Description: {employee.description}</p>
                 <p className='card-text'>Department: {employee.selectDepartment}</p>
                 <p className='card-text'>Head: {employee.selectHead}</p>
-
-               
               </div>
             </div>
           </div>

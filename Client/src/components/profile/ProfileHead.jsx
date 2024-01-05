@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 
 const Profile_head = () => {
     const [profileHead, setProfileHead] = useState({});
-    const { id } = useParams();  //
+    const { id } = useParams();
 
     useEffect(() => {
         axios.get(`http://localhost:3000/profile_head/${id}`)
@@ -30,6 +30,8 @@ const Profile_head = () => {
                 </div>
 
                 <div className="col-md-12">
+                    <Link to="/dashboard/heads" className="btn btn-secondary btn-sm mb-3">Back to Department Heads</Link>
+
                     <div className="card">
                         <div className="card-body">
                             <h5 className="card-title">

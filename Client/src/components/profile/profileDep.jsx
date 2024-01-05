@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
+import Button from 'react-bootstrap/Button';
 
 const Profile_department = () => {
   const [profileDept, setProfileDept] = useState({});
@@ -20,6 +21,11 @@ const Profile_department = () => {
     <div className="container mt-5 d-flex justify-content-center">
       <div className="row">
         <div className="col-md-10">
+          <Link to="/dashboard/departments"> {/* Assuming "/departments" is your departments listing page */}
+            <Button variant="outline-primary" className="mb-3 ">
+              Back to Departments
+            </Button>
+          </Link>
           <CardGroup>
             <Card>
               <Card.Img

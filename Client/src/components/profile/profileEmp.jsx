@@ -20,10 +20,10 @@ function Profile_employee() {
     <div className="container mt-5">
       <div className="row">
         <div className="col-md-11 d-flex justify-content-center">
-         
+          
         </div>
-
         <div className="col-md-12">
+        <Link to="/dashboard/heads" className="btn btn-secondary btn-sm mb-3">Back to Employee</Link>
           <CardGroup>
             <Card>
               <Card.Img
