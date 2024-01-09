@@ -98,7 +98,7 @@ function Edit_Head() {
                 onChange={(e) => setDescription(e.target.value)}
               />
             </div>
-            <label htmlFor="select"><strong>Select box</strong></label>
+            <label htmlFor="select"><strong>Select Department</strong></label>
             <select
               name='Department'
               className='form-control rounded-0'

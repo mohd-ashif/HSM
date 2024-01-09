@@ -24,6 +24,7 @@ import Profile_employee from './components/profile/profileEmp';
 import Profile_head from './components/profile/ProfileHead';
 import Profile_department from './components/profile/profileDep';
 import Unique_department from './components/unique/UniqueDepartment';
+import Unique_head from './components/unique/UniqueHead';
 
 function App() {
   return (
@@ -52,7 +53,10 @@ function App() {
         <Route path="/profile_head/:id" element={<Profile_head />} />
         <Route path="/profile_department/:id" element={<Profile_department />} />
         <Route path="/unique_department/:name" element={<Unique_department />} />
+        <Route path="/unique_head/:name" element={<Unique_head />} />
 
+
+        
         
         {/* Fallback route */}
         {/* <Route path="*" element={<Navigate to="/" />} /> */}

@@ -122,19 +122,17 @@ function Edit_employee() {
             </div>
 
             <div className='mb-3'>
-              <label htmlFor="head"><strong>Select Department Head</strong></label>
-              <select
-                name='head'
-                className='form-control rounded-0'
-                value={selectHead}
-                onChange={(e) => setSelectHead(e.target.value)}
-              >
-                
-                <option value='Head1'>Head1</option>
-                <option value='Head2'>Headwq</option>
-                <option value='Head3'>Head3</option>
-              </select>
-            </div>
+  <label htmlFor="selectHead"><strong>Department Head</strong></label>
+  <input
+    type="text"
+    name='selectHead'
+    placeholder='Enter Description'
+    className='form-control rounded-0'
+    value={selectHead}  // Corrected from 'description' to 'selectHead'
+    onChange={(e) => setSelectHead(e.target.value)}
+  />
+</div>
+
 
             {image && (
               <div className='mb-2'>

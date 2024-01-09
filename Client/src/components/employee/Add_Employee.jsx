@@ -107,27 +107,24 @@ const AddEmployee = () => {
             >
               <option value=''>Select Department</option>
               <option value='Cardiology'>Cardiology</option>
-              <option value='Pediatrics'>Pediatrics</option>
-              <option value='Radiology'>Radiology</option>
-              <option value='Surgery'>Surgery</option>
-              <option value='Emergency Medicine'>Emergency Medicine</option>
+              <option value='Pediatrics'>Orthopedics</option>
+              <option value='Radiology'>Oncology</option>
+              <option value='Surgery'>Obstetrics</option>
+        
             </select>
           </div>
 
           <div className='mb-3'>
-            <label htmlFor="head"><strong>Select Department Head</strong></label>
-            <select
-              name='head'
-              className='form-control rounded-0'
-              value={selectHead}
-              onChange={(e) => setselectHead(e.target.value)}
-            >
-              <option value=''>Select Department Head</option>
-              <option value='Head1'>Head1wd</option>
-              <option value='Head2'>Head2wed</option>
-              <option value='Head3'>Headqwq3</option>
-            </select>
-          </div>
+              <label htmlFor="description"><strong> Head</strong></label>
+              <input
+                type="text"
+                name='head'
+                placeholder='Enter Department Head'
+                className='form-control rounded-0'
+                value={selectHead}
+                onChange={(e) => setselectHead(e.target.value)}
+              />
+            </div>
 
           <div className='mb-3'>
             <label htmlFor="image"><strong>Upload Image:</strong></label>

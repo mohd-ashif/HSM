@@ -1,56 +1,70 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';  
 
-const unique_head = () => {
-    const [profileHead, setProfileHead] = useState({});
-    const { id } = useParams();  //
+const Unique_head  = () => {
+  const [uniqueHead, setUniqueHead] = useState({});
+  const { name } = useParams();
 
-    useEffect(() => {
-        axios.get(`http://localhost:3000/profile_head/${id}`)
-            .then(result => {
-                setProfileHead(result.data);
-            })
-            .catch(err => console.error(err));
-    }, [id]);
+  useEffect(() => {
+    axios.get(`http://localhost:3000/Unique_Head/${name}`)
+      .then(result => {
+        setUniqueHead(result.data);
+      })
+      .catch(err => {
+        console.error(err);
+       
+      });
+      
+  }, [name]);
 
-    return (
-        <div className="container mt-5 ">
-            <div className="row">
-                <div className="col-md-11 d-flex justify-content-center">
-                    {profileHead.image && (
-                        <div className="mb-5">
-                            <img
-                                src={`http://localhost:3000/upload/${profileHead.image}`}
-                                alt="Profile"
-                                className="img-fluid rounded-circle"
-                            />
-                        </div>
-                    )}
-                </div>
-
-                <div className="col-md-12">
-                    <div className="card">
-                        <div className="card-body">
-                            <h5 className="card-title">
-                                <strong>Name:</strong> {profileHead.name}
-                            </h5>
-                            <br />
-                            <p className="card-text">
-                                <strong>Number:</strong> {profileHead.number}<br />
-                                <br />
-                                <strong>Age:</strong> {profileHead.age}<br />
-
-                                <br />
-                                <strong>Department:</strong> <Link to={`/unique_department/${name}`}>{profileHead.select}</Link><br />
-                                <br />
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div className="container mt-5 ">
+      <div className="row">
+        <div className="col-md-11 d-flex justify-content-center">
+         
         </div>
-    );
+
+        <div className="col-md-12 justify-content-center">
+          <Link to="/dashboard/heads" className="btn btn-secondary btn-sm mb-3"  >Back to Department Heads</Link>
+
+         
+          <Card sx={{ maxWidth: 600, margin: 'auto' }}>
+            
+            <CardMedia
+              component="img"
+              height="440"
+              src={`http://localhost:3000/upload/${uniqueHead.image}`}
+              alt={uniqueHead.name}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {uniqueHead.name}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                <strong>Number:</strong> {uniqueHead.number}
+                <br />
+                <br />
+                <strong>Age:</strong> {uniqueHead.age}
+                <br />
+                <br />
+                <strong>Department:</strong> <Link to={`/unique_department/${uniqueHead.select}`}>{uniqueHead.select}</Link>
+                <br />
+                <br />
+              </Typography>
+            </CardContent>
+           
+          </Card>
+
+        </div>
+      </div>
+    </div>
+  );
 };
 
-export default unique_head ;
+export default Unique_head ;

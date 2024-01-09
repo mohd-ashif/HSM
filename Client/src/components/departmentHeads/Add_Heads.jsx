@@ -91,7 +91,7 @@ const Add_Heads = () => {
             />
           </div>
 
-          <label htmlFor="select"><strong>Select box</strong></label>
+          <label htmlFor="select"><strong>Select Department</strong></label>
           <select
             name='Department'
             className='form-control rounded-0'

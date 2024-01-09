@@ -6,7 +6,8 @@ const DepartmentHeadsSchema = new mongoose.Schema({
     description: String,
     age: Number,
     image: String,
-    select: String
+    select: String,
+    departmentName :String  
 });
 
 const HeadsModel = mongoose.model('heads', DepartmentHeadsSchema); 

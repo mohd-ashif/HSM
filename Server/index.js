@@ -318,7 +318,7 @@ app.get("/profile_department/:id", (req, res) => {
 
 
 
-// route to get unique department by name
+// Route to get unique department by name
 app.get('/unique_department/:name', (req, res) => {
   const name = req.params.name;
   DepartmentModel.findOne({ name: name })
@@ -333,6 +333,24 @@ app.get('/unique_department/:name', (req, res) => {
       res.status(500).json({ error: 'Internal Server Error', details: err.message });
     });
 });
+
+// Route to get unique Head by name
+app.get('/unique_head/:name', (req, res) => {
+  const name = req.params.name;
+  HeadsModel.findOne({ name: name })
+    .then(heads => {
+      if (!heads) {
+        res.status(404).json({ error: "heads not found" });
+      } else {
+        res.json(heads);
+      }
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'Internal Server Error', details: err.message });
+    });
+});
+
+
 
 
 // login 
