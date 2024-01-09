@@ -1,4 +1,4 @@
-# Hospital Manager
+# Hospital Management System
 
 ## Introduction
 
