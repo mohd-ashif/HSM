@@ -23,8 +23,6 @@ Welcome to the Hospital Manager project! This application aims to provide a basi
    - Add, edit, or delete employees.
    - Employee details include name, employee number, age, profile image, profile description, associated department, and reporting structure.
 
-5. **Password Change (Optional)**
-   - Admins have the option to change their password for added security.
 
 ### Front End Features
 
