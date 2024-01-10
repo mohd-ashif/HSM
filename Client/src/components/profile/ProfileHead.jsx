@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button'; 
+import { ArrowLeftOutlined } from '@ant-design/icons';
 
 const Profile_head = () => {
   const [profileHead, setProfileHead] = useState({});
@@ -27,7 +28,7 @@ const Profile_head = () => {
         </div>
 
         <div className="col-md-12 justify-content-center">
-          <Link to="/dashboard/heads" className="btn btn-secondary btn-sm mb-3"  >Back to Department Heads</Link>
+          <Link to="/dashboard/heads" className="btn btn-secondary btn-sm mb-3"  > <ArrowLeftOutlined /></Link>
 
          
           <Card sx={{ maxWidth: 600, margin: 'auto' }}>

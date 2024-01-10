@@ -17,7 +17,7 @@ const ViewDepartment = () => {
   }, []);
 
   return (
-    <div className='container mt-5'>
+    <div className=' container mt-5 '>
       <div className='d-flex justify-content-between mb-3'>
         <div>
           <Link to="/dashboard/dash" className="btn btn-secondary"><ArrowLeftOutlined /></Link>

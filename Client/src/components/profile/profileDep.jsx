@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Button from 'react-bootstrap/Button';
+import { ArrowLeftOutlined } from '@ant-design/icons';
 
 const ProfileDepartment = () => {
   const [profileDept, setProfileDept] = useState({});
@@ -25,7 +26,7 @@ const ProfileDepartment = () => {
         <div className="col-md-10">
           <Link to="/dashboard/departments">
             <Button variant="outline-primary" className="mb-3">
-              Back to Departments
+            <ArrowLeftOutlined />
             </Button>
           </Link>
           <Card sx={{ maxWidth: 600 , height:600}}>

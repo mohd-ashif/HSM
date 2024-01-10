@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { ArrowLeftOutlined } from '@ant-design/icons';
 
 function ProfileEmployee() {
   const [profile, setProfile] = useState({});
@@ -26,7 +27,7 @@ function ProfileEmployee() {
           
         </div>
         <div className="col-md-12">
-          <Link to="/dashboard/heads/" className="btn btn-secondary btn-sm mb-3">Back to Employee</Link>
+          <Link to="/dashboard/heads/" className="btn btn-secondary btn-sm mb-3"> <ArrowLeftOutlined /></Link>
           <Card sx={{ maxWidth: 600, height: 700 }}>
             <CardMedia
               component="img"
