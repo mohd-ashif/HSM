@@ -1,6 +1,9 @@
+import { Button, Table, Space, Image, Carousel } from 'antd';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { EditOutlined, EyeOutlined, DeleteOutlined } from '@ant-design/icons'; // Import Ant Design icons
+
 
 const Departments = () => {
   const [departments, setDepartments] = useState([]);
@@ -20,63 +23,72 @@ const Departments = () => {
       .catch(error => console.error('Error deleting department:', error));
   };
 
+  const columns = [
+    {
+      title: 'Department Name',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'Profile Image',
+      dataIndex: 'image',
+      key: 'image',
+      render: (text, record) => (
+        <Image
+          src={`http://localhost:3000/upload/${record.image}`}
+          alt="Department Image"
+          style={{ border: '1px solid black', width: '50px', height: '50px', borderRadius: '50%' }}
+        />
+      ),
+    },
+    {
+      title: 'Year Founded',
+      dataIndex: 'year',
+      key: 'year',
+    },
+    {
+      title: 'Description',
+      dataIndex: 'description',
+      key: 'description',
+    },
+    {
+      title: 'Operation',
+      key: 'operation',
+      render: (text, record) => (
+        <Space size="middle">
+          <Link to={`/dashboard/edit_department/${record._id}`} className='btn btn-success p-2 m-2'>
+          <EditOutlined />
+          </Link>
+          <Link to={`/profile_department/${record._id}`} className='btn btn-secondary p-2 m-2'>
+          <EyeOutlined />
+          </Link>
+          <Button
+            type="danger"
+            className='btn btn-danger p-2 m-2'
+            onClick={() => handleDelete(record._id)}
+          >
+           <DeleteOutlined />
+          </Button>
+        </Space>
+      ),
+    },
+  ];
+
   return (
     <div className='px-5 mt-5'>
       <div className='d-flex justify-content-center'>
         <h3>Department List</h3>
       </div>
-      <Link to='/dashboard/add_departments' className='btn btn-success'>
+     <Button type='primary'><Link to='/dashboard/add_departments' >
         Add Department
       </Link>
+      </Button> 
+      
       <div className='table-responsive w-100'>
-        <table className='table'>
-          <thead>
-            <tr>
-              <th>Department Name</th>
-              <th>Profile Image</th>
-              <th>Year Founded</th>
-              <th>Description</th>
-              <th>Operation</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {departments.map((department) => (
-              <tr key={department._id}>
-                <td>{department.name}</td>
-                <td>
-                  <img
-                    src={`http://localhost:3000/upload/${department.image}`}
-                    alt="Department Image"
-                    style={{ border: '1px solid black', width: '50px', height: '50px', borderRadius: '50%' }}
-                  />
-                </td>
-                <td>{department.year}</td>
-                <td>{department.description}</td>
-                <td>
-                  <div className="d-flex">
-                  <Link to={`/dashboard/edit_department/${department._id}`} className='btn btn-success  p-2 m-2'>
-                  <i className='fas fa-edit'></i>
-                  </Link>
-                
-                  <Link to={`/profile_department/${department._id}`}className='btn btn-secondary p-2 m-2'>
-                    <i className='fas fa-eye'></i>
-                  </Link>
-
-                  <button 
-                    className='btn btn-danger  p-2 m-2'
-                    style={{ marginLeft: '0.5rem' }} 
-                    onClick={() => handleDelete(department._id)}
-                  >
-                    <i className='fas fa-trash-alt'></i>
-                  </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <Table columns={columns} dataSource={departments} />
       </div>
+
+      
     </div>
   );
 };

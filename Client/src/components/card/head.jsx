@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Card } from 'antd';
+import { ArrowLeftOutlined } from '@ant-design/icons';
+  
+const { Meta } = Card;
 
-const View_head = () => {
+const ViewHead = () => {
   const [departmentHeads, setDepartmentHeads] = useState([]);
 
   useEffect(() => {
@@ -11,41 +15,37 @@ const View_head = () => {
       .catch(err => console.log(err));
   }, []);
 
- 
-
   return (
     <div className='container mt-5'>
       <div className='d-flex justify-content-center'>
         <h3>Department Heads Card</h3>
       </div>
-      <Link to="/dashboard/dash" className="btn btn-secondary btn-sm">Back</Link>
-   
+      <Link to="/dashboard/dash" className="btn btn-secondary btn-sm"><ArrowLeftOutlined /></Link>
 
       <div className='row mt-3'>
         {departmentHeads.map((departmentHead, index) => (
           <div key={index} className='col-md-4 mb-3'>
-            <div className='card custom-black-card border'>
-              <img
-                src={`http://localhost:3000/upload/${departmentHead.image}`}
-                alt="Department Head Image"
-                className='card-img-top'
-                style={{ height: '200px', objectFit: 'cover' }}
-              />
-              <div className='card-body'>
-                <h5 className='card-title'>{departmentHead.name}</h5>
-                <p className='card-text'>Age: {departmentHead.age}</p>
-                <p className='card-text'>Employee Number: {departmentHead.number}</p>
-                <p className='card-text'>{departmentHead.description}</p>
-                <p className='card-text'>Department: {departmentHead.select}</p>
-
-               
-              </div>
-            </div>
+            <Card
+              hoverable
+              style={{ width: 300 }}
+              cover={
+                <img
+                  src={`http://localhost:3000/upload/${departmentHead.image}`}
+                  alt="Department Head Image"
+                  style={{ height: '200px', objectFit: 'cover' }}
+                />
+              }
+            >
+              <Meta title={departmentHead.name} description={`Age: ${departmentHead.age}`} />
+              <p>Employee Number: {departmentHead.number}</p>
+              <p>{departmentHead.description}</p>
+              <p>Department: {departmentHead.select}</p>
+            </Card>
           </div>
-        ))}         
+        ))}
       </div>
     </div>
   );
 };
 
-export default View_head;
+export default ViewHead;

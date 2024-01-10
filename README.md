@@ -1,1 +1,0 @@
-hospital mangement system //

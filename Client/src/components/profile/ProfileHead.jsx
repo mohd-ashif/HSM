@@ -47,6 +47,9 @@ const Profile_head = () => {
                 <br />
                 <br />
                 <strong>Age:</strong> {profileHead.age}
+                <br /> 
+                 <br /> 
+                <strong>Description</strong> {profileHead.description}
                 <br />
                 <br />
                 <strong>Department:</strong> <Link to={`/unique_department/${profileHead.select}`}>{profileHead.select}</Link>
@@ -54,9 +57,7 @@ const Profile_head = () => {
                 <br />
               </Typography>
             </CardContent>
-           
           </Card>
-
         </div>
       </div>
     </div>

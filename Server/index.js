@@ -37,7 +37,7 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
   limits: {
-    fileSize: 1024 * 1024 * 5, // 5 MB limit
+    fileSize: 1024 * 1024 * 6, // 6 MB limit
   },
 });
 
@@ -351,6 +351,12 @@ app.get('/unique_head/:name', (req, res) => {
 });
 
 
+//sign up 
+app.post('/', (req, res) => {
+  UserModel.create(req.body)
+      .then(users => res.json(users))
+      .catch(err => res.json(err));
+});
 
 
 // login 
