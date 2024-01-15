@@ -42,8 +42,8 @@ const ViewDepartment = () => {
                 />
               }
             >
-              <Meta title={department.name} 
-                 description={`Year Founded: ${department.year}`} />
+              <Meta title={department.name}
+                description={`Year Founded: ${department.year}`} />
               <p>Description: {department.description}</p>
             </Card>
           </div>
@@ -54,4 +54,3 @@ const ViewDepartment = () => {
 };
 
 export default ViewDepartment;
- 

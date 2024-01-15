@@ -32,6 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Sign />} />
         <Route path="/login" element={<Login />} />
+        
         <Route path="/dashboard" element={<Dashboard />}>
           <Route path="/dashboard/dash" element={<Dash />} />
           <Route path="/dashboard/departments" element={<Departments />} />
@@ -58,8 +59,7 @@ function App() {
 
         
         
-        {/* Fallback route */}
-        {/* <Route path="*" element={<Navigate to="/" />} /> */}
+        
       </Routes>
     </Router>
   );

@@ -43,7 +43,7 @@ const upload = multer({
 
 // Add department into DB
 app.post('/dashboard/add_departments', upload.single('image'), (req, res) => {
-  const { name, year, description} = req.body;
+  const { name, year, description } = req.body;
   const imagePath = req.file.filename;
 
   DepartmentModel.create({ name, year, description, image: req.file.filename })
@@ -95,10 +95,10 @@ app.put('/edit_department/:id', upload.single('image'), (req, res) => {
 
 // delete department 
 app.delete('/delete_department/:id', (req, res) => {
-  const id = req.params.id; 
-  DepartmentModel.findByIdAndDelete({ _id: id }) 
+  const id = req.params.id;
+  DepartmentModel.findByIdAndDelete({ _id: id })
     .then(department => res.json(department))
-    .catch(err => res.json(err)); 
+    .catch(err => res.json(err));
 });
 
 //add heads
@@ -118,17 +118,17 @@ app.post("/dashboard/add_heads", upload.single('image'), (req, res) => {
 //show Haeds 
 app.get('/heads', (req, res) => {
   HeadsModel.find({})
-  .then(heads => res.json(heads))
-  .catch(err => res.json(err))
+    .then(heads => res.json(heads))
+    .catch(err => res.json(err))
 })
 
 //get for Edit head
 app.get("/get_heads/:id", (req, res) => {
 
   const id = req.params.id
-  HeadsModel.findById({_id:id})
-  .then(heads => res.json(heads))
-  .catch(err =>res.json(err))
+  HeadsModel.findById({ _id: id })
+    .then(heads => res.json(heads))
+    .catch(err => res.json(err))
 })
 
 
@@ -280,7 +280,7 @@ app.get('/profile_employee/:id', (req, res) => {
         res.json(employee);
       }
     })
-    
+
 });
 
 
@@ -290,9 +290,9 @@ app.get('/profile_head/:id', (req, res) => {
   HeadsModel.findById(id)
     .then(heads => {
       if (!heads) {
-        res.status(404).json({ error: "Employee not found" }); 
+        res.status(404).json({ error: "Employee not found" });
       } else {
-        res.json(heads); 
+        res.json(heads);
       }
     })
     .catch(err => {
@@ -354,8 +354,8 @@ app.get('/unique_head/:name', (req, res) => {
 //sign up 
 app.post('/', (req, res) => {
   UserModel.create(req.body)
-      .then(users => res.json(users))
-      .catch(err => res.json(err));
+    .then(users => res.json(users))
+    .catch(err => res.json(err));
 });
 
 
@@ -364,18 +364,18 @@ app.post('/', (req, res) => {
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
   UserModel.findOne({ email: email })
-      .then(user => {
-          if (user) {
-              if (user.password === password) {
-                  res.json("Success");
-              } else {
-                  res.json("Password is incorrect");
-              }
-          } else {
-              res.json("Invalid email or password");
-          }
-      })
-      .catch(err => res.json(err));
+    .then(user => {
+      if (user) {
+        if (user.password === password) {
+          res.json("Success");
+        } else {
+          res.json("Password is incorrect");
+        }
+      } else {
+        res.json("Invalid email or password");
+      }
+    })
+    .catch(err => res.json(err));
 });
 
 app.listen(port, () => {
