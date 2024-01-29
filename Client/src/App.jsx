@@ -16,8 +16,8 @@ import Add_Heads from './components/departmentHeads/Add_Heads';
 import Edit_Heads from './components/departmentHeads/Edit_Heads';
 import Add_Employee from './components/employee/Add_Employee';
 import Edit_employee from './components/employee/Edit_employee';
-import ViewHead from './components/card/head';
-import ViewDepartment from './components/card/department';
+import ViewHead  from "./components/card/head";
+import ViewDepartment from './components/card/Department';
 import ViewEmployee from './components/card/Employee';
 import Dash from './components/Dash';
 import Profile_employee from './components/profile/profileEmp';
@@ -49,15 +49,13 @@ function App() {
 
         <Route path="/view_head" element={<ViewHead />} />
         <Route path="/view_department" element={<ViewDepartment />} />
+        
         <Route path="/view_employee" element={<ViewEmployee />} />
         <Route path="/Profile_employee/:id" element={<Profile_employee />} />
         <Route path="/profile_head/:id" element={<Profile_head />} />
         <Route path="/profile_department/:id" element={<Profile_department />} />
         <Route path="/unique_department/:name" element={<Unique_department />} />
         <Route path="/unique_head/:name" element={<Unique_head />} />
-
-
-        
         
         
       </Routes>
