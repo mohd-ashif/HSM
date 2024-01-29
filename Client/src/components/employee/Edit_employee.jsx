@@ -13,10 +13,24 @@ function Edit_employee() {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  const [departments, setDepartments] = useState([]);
+  const [departmentHeads, setDepartmentHeads] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/departments')
+      .then(result => setDepartments(result.data))
+      .catch(err => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/heads')
+      .then(result => setDepartmentHeads(result.data))
+      .catch(err => console.log(err));
+  }, []);
+
   useEffect(() => {
     axios.get(`http://localhost:3000/get_employee/${id}`)
       .then(result => {
-        console.log(result);
         setName(result.data.name);
         setNumber(result.data.number);
         setSelectHead(result.data.selectHead);
@@ -28,23 +42,22 @@ function Edit_employee() {
       .catch(err => console.log(err));
   }, [id]);
 
-
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-  
+
     const formData = new FormData();
     formData.append('image', image);
     formData.append('name', name);
     formData.append('number', number);
-    formData.append('age', age);  
+    formData.append('age', age);
     formData.append('description', description);
-    formData.append('selectHead', selectHead); // Use 'selectHeads' as the key
-    formData.append('selectDepartment', selectDepartment); // Use 'selectDepartment' as the key
-  
+    formData.append('selectHead', selectHead);
+    formData.append('selectDepartment', selectDepartment);
+
     axios.put(`http://localhost:3000/edit_employee/${id}`, formData)
       .then(result => {
         console.log(result);
@@ -52,7 +65,6 @@ function Edit_employee() {
       })
       .catch(err => console.log(err));
   };
-  
 
   return (
     <div>
@@ -105,34 +117,36 @@ function Edit_employee() {
             </div>
 
             <div className='mb-3'>
-              <label htmlFor="department"><strong>Select Department</strong></label>
+              <label htmlFor="selectDepartment"><strong>Select Department</strong></label>
               <select
-                name='department'
-                className='form-control rounded-0'
-                value={selectDepartment}
+                className='form-control'
                 onChange={(e) => setSelectDepartment(e.target.value)}
+                value={selectDepartment}
               >
-                <option value=''>Select Department</option>
-                <option value='Cardiology'>Cardiology</option>
-                <option value='Pediatrics'>Pediatrics</option>
-                <option value='Radiology'>Orthopedics</option>
-                <option value='Surgery'>Oncology</option>
-                <option value='Emergency Medicine'>Obstetrics</option>
+                <option value="">Select Department</option>
+                {departments.map((data) => (
+                  <option key={data.id} value={data.name}>
+                    {data.name}
+                  </option>
+                ))}
               </select>
             </div>
 
             <div className='mb-3'>
-  <label htmlFor="selectHead"><strong>Department Head</strong></label>
-  <input
-    type="text"
-    name='selectHead'
-    placeholder='Enter Description'
-    className='form-control rounded-0'
-    value={selectHead}  // Corrected from 'description' to 'selectHead'
-    onChange={(e) => setSelectHead(e.target.value)}
-  />
-</div>
-
+              <label htmlFor="selectHead"><strong>Select Department Head</strong></label>
+              <select
+                className='form-control'
+                onChange={(e) => setSelectHead(e.target.value)}
+                value={selectHead}
+              >
+                <option value="">Select Department Head</option>
+                {departmentHeads.map((value) => (
+                  <option key={value.id} value={value.name}>
+                    {value.name}
+                  </option>
+                ))}
+              </select>
+            </div>
 
             {image && (
               <div className='mb-2'>
