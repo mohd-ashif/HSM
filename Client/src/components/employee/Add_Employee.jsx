@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,9 +9,22 @@ const AddEmployee = () => {
   const [age, setAge] = useState('');
   const [image, setImage] = useState(null);
   const [selectedDepartment, setSelectDepartment] = useState('');
-  const [selectHead, setselectHead] = useState('');
-
+  const [selectHead, setSelectHead] = useState('');
   const navigate = useNavigate();
+  const [departments, setDepartments] = useState([]);
+  const [departmentHeads, setDepartmentHeads] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/departments')
+      .then(result => setDepartments(result.data))
+      .catch(err => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/heads')
+      .then(result => setDepartmentHeads(result.data))
+      .catch(err => console.log(err));
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,9 +34,9 @@ const AddEmployee = () => {
     formData.append('number', number);
     formData.append('description', description);
     formData.append('age', age);
-    formData.append('image', image);  
+    formData.append('image', image);
     formData.append('selectDepartment', selectedDepartment);
-    formData.append('selectHead', selectHead); 
+    formData.append('selectHead', selectHead);
 
     try {
       const response = await axios.post('http://localhost:3000/dashboard/add_employee', formData, {
@@ -42,7 +55,7 @@ const AddEmployee = () => {
   };
 
   const handleImageChange = (e) => {
-    setImage(e.target.files[0]); 
+    setImage(e.target.files[0]);
   };
 
   return (
@@ -100,31 +113,32 @@ const AddEmployee = () => {
           <div className='mb-3'>
             <label htmlFor="department"><strong>Select Department</strong></label>
             <select
-              name='department'
-              className='form-control rounded-0'
-              value={selectedDepartment}
+              className='form-control'
               onChange={(e) => setSelectDepartment(e.target.value)}
             >
-              <option value=''>Select Department</option>
-              <option value='Cardiology'>Cardiology</option>
-              <option value='Pediatrics'>Orthopedics</option>
-              <option value='Radiology'>Oncology</option>
-              <option value='Surgery'>Obstetrics</option>
-        
+              <option value={selectedDepartment}>Select Department</option>
+              {departments.map((data) => (
+                <option key={data.id} value={data.name}>
+                  {data.name}
+                </option>
+              ))}
             </select>
           </div>
 
           <div className='mb-3'>
-              <label htmlFor="description"><strong> Head</strong></label>
-              <input
-                type="text"
-                name='head'
-                placeholder='Enter Department Head'
-                className='form-control rounded-0'
-                value={selectHead}
-                onChange={(e) => setselectHead(e.target.value)}
-              />
-            </div>
+            <label htmlFor="description"><strong> Head</strong></label>
+            <select
+              className='form-control'
+              onChange={(e) => setSelectHead(e.target.value)}
+            >
+              <option value={selectHead}>Select Department Head</option>
+              {departmentHeads.map((value) => (
+                <option key={value.id} value={value.name}>
+                  {value.name}
+                </option>
+              ))}
+            </select>
+          </div>
 
           <div className='mb-3'>
             <label htmlFor="image"><strong>Upload Image:</strong></label>
@@ -132,7 +146,7 @@ const AddEmployee = () => {
               type="file"
               accept="image/*"
               name='image'
-              onChange={(e) => setImage(e.target.files[0])}
+              onChange={handleImageChange}
               className='form-control rounded-0'
             />
           </div>
