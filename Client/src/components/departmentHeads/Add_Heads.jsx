@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
 
 const Add_Heads = () => {
   const [name, setName] = useState('');
@@ -10,7 +9,14 @@ const Add_Heads = () => {
   const [age, setAge] = useState('');
   const [image, setImage] = useState('');
   const [select, setSelect] = useState('');
+  const [departments, setDepartments] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/departments')
+      .then(result => setDepartments(result.data))
+      .catch(err => console.log(err));
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -93,17 +99,16 @@ const Add_Heads = () => {
 
           <label htmlFor="select"><strong>Select Department</strong></label>
           <select
-            name='Department'
-            className='form-control rounded-0'
+            className='form-control'
             value={select}
             onChange={(e) => setSelect(e.target.value)}
           >
-            <option value=''>Select Department</option>
-            <option value='Cardiology'>Cardiology</option>
-            <option value='Pediatrics'>Pediatrics</option>
-            <option value='Orthopedics'>Orthopedics</option>
-            <option value='Oncology'>Oncology</option>
-            <option value='Obsterics'>Obsterics</option>
+            <option value="">Select Department</option>
+            {departments.map((data) => (
+              <option key={data.id} value={data.name}>
+                {data.name}
+              </option>
+            ))}
           </select>
 
           <div className='mb-3'>
@@ -125,4 +130,3 @@ const Add_Heads = () => {
 };
 
 export default Add_Heads;
-

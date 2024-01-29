@@ -12,6 +12,8 @@ function Edit_Head() {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  
+
   useEffect(() => {
     axios.get(`http://localhost:3000/get_heads/${id}`)
       .then(result => {
