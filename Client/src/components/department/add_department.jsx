@@ -6,7 +6,7 @@ const Add_departmentlist = () => {
   const [name, setName] = useState('');
   const [year, setYear] = useState('');
   const [description, setDescription] = useState('');
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(null);
   const navigate = useNavigate();
 
   const submit = async (e) => {
@@ -59,7 +59,7 @@ const Add_departmentlist = () => {
               onChange={(e) => setYear(e.target.value)}
             />
           </div>
-
+                
           <div className='mb-3'>
             <label htmlFor="description"><strong>Description</strong></label>
             <input

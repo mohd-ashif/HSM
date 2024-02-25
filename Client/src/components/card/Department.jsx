@@ -38,10 +38,10 @@ const ViewDepartment = () => {
                 <img
                   alt='Department Image'
                   src={`http://localhost:3000/upload/${department.image}`}
-                  style={{ height: '200px', objectFit: 'cover' }}
+                  style={{ height: '200px', objectFit: 'cover' }} 
                 />
-              }
-            >
+              } 
+            >    
               <Meta title={department.name}
                 description={`Year Founded: ${department.year}`} />
               <p>Description: {department.description}</p>
