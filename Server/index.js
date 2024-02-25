@@ -33,7 +33,7 @@ const storage = multer.diskStorage({
     cb(null, file.fieldname + '_' + Date.now() + path.extname(file.originalname));
   },
 });
-
+             
 const upload = multer({
   storage: storage,
   limits: {
@@ -41,14 +41,18 @@ const upload = multer({
   },
 });
 
+app.get('/', (req, res) => {
+  res.send('Server is running...')
+})
+
 // Add department into DB
 app.post('/dashboard/add_departments', upload.single('image'), (req, res) => {
-  const { name, year, description} = req.body;
+  const { name, year, description} = req.body; 
   const imagePath = req.file.filename;
 
   DepartmentModel.create({ name, year, description, image: req.file.filename })
     .then((department) => res.json(department))
-    .catch((err) => res.json(err));
+    .catch((err) => res.json(err)); 
 });
 
 // show Departments
@@ -108,7 +112,7 @@ app.post("/dashboard/add_heads", upload.single('image'), (req, res) => {
 
   const { name, number, age, description, select } = req.body;
   const imagePath = req.file ? req.file.filename : null;
-
+  
   HeadsModel.create({ name, number, age, description, select, image: imagePath })
     .then((heads) => res.json(heads))
     .catch((err) => res.json(err));
@@ -209,176 +213,176 @@ app.get('/get_employee/:id', async (req, res) => {
     const id = req.params.id;
     const employee = await EmployeeModel.findById(id);
 
-    if (!employee) {
-      res.status(404).json({ error: 'Employee not found' });
-    } else {
-      res.json(employee);
-    }
-  } catch (err) {
-    res.status(500).json({ error: 'Internal Server Error', details: err.message });
-  }
-});
-
-// edit employee
-app.put('/edit_employee/:id', upload.single('image'), async (req, res) => {
-  try {
-    const id = req.params.id;
-
-    const updatesData = {
-      name: req.body.name,
-      age: req.body.age,
-      description: req.body.description,
-      selectDepartment: req.body.selectDepartment,
-      selectHead: req.body.selectHead,
-      number: Number(req.body.number),
-    };
-
-    if (req.file) {
-      updatesData.image = req.file.filename;
-    }
-
-    const updatedEmployee = await EmployeeModel.findByIdAndUpdate(id, updatesData, { new: true });
-
-    if (!updatedEmployee) {
-      return res.status(404).json({ error: 'Employee not found' });
-    }
-
-    res.json(updatedEmployee);
-  } catch (err) {
-    console.error(err);
-
-    // Log the specific error message for better debugging
-    res.status(500).json({ error: 'Internal Server Error', details: err.message });
-  }
-});
-
-
-
-
-//emplyee delete 
-app.delete('/delete_employee/:id', async (req, res) => {
-  try {
-    const id = req.params.id;
-    const employee = await EmployeeModel.findByIdAndDelete(id);
-
-    return employee
-      ? res.json({ message: 'Employee deleted successfully' })
-      : res.status(404).json({ error: 'Employee not found' });
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error', details: error.message });
-  }
-});
-
-//get data for Employee profile by id
-app.get('/profile_employee/:id', (req, res) => {
-  const id = req.params.id;
-  EmployeeModel.findById(id)
-    .then(employee => {
       if (!employee) {
         res.status(404).json({ error: 'Employee not found' });
       } else {
         res.json(employee);
       }
-    })
-    
-});
-
-
-//get data for Head profile by id
-app.get('/profile_head/:id', (req, res) => {
-  const id = req.params.id;
-  HeadsModel.findById(id)
-    .then(heads => {
-      if (!heads) {
-        res.status(404).json({ error: "Employee not found" }); 
-      } else {
-        res.json(heads); 
-      }
-    })
-    .catch(err => {
+    } catch (err) {
       res.status(500).json({ error: 'Internal Server Error', details: err.message });
-    });
-});
+    }
+  });
 
-// get data for department by id
-app.get("/profile_department/:id", (req, res) => {
-  const id = req.params.id;
-  DepartmentModel.findById(id)
-    .then(department => {
-      if (!department) {
-        res.status(404).json({ error: "Department not found" });
-      } else {
-        res.json(department);
+  // edit employee
+  app.put('/edit_employee/:id', upload.single('image'), async (req, res) => {
+    try {
+      const id = req.params.id;
+
+      const updatesData = {
+        name: req.body.name,
+        age: req.body.age,
+        description: req.body.description,
+        selectDepartment: req.body.selectDepartment,
+        selectHead: req.body.selectHead,
+        number: Number(req.body.number),
+      };
+
+      if (req.file) {
+        updatesData.image = req.file.filename;
       }
-    })
-    .catch(err => {
-      res.status(500).json({ error: 'Internal Server Error', details: err.message });
-    });
-});
 
+      const updatedEmployee = await EmployeeModel.findByIdAndUpdate(id, updatesData, { new: true });
 
-
-// Route to get unique department by name
-app.get('/unique_department/:name', (req, res) => {
-  const name = req.params.name;
-  DepartmentModel.findOne({ name: name })
-    .then(department => {
-      if (!department) {
-        res.status(404).json({ error: "Department not found" });
-      } else {
-        res.json(department);
+      if (!updatedEmployee) {
+        return res.status(404).json({ error: 'Employee not found' });
       }
-    })
-    .catch(err => {
+
+      res.json(updatedEmployee);
+    } catch (err) {
+      console.error(err);
+
+      // Log the specific error message for better debugging
       res.status(500).json({ error: 'Internal Server Error', details: err.message });
-    });
-});
-
-// Route to get unique Head by name
-app.get('/unique_head/:name', (req, res) => {
-  const name = req.params.name;
-  HeadsModel.findOne({ name: name })
-    .then(heads => {
-      if (!heads) {
-        res.status(404).json({ error: "heads not found" });
-      } else {
-        res.json(heads);
-      }
-    })
-    .catch(err => {
-      res.status(500).json({ error: 'Internal Server Error', details: err.message });
-    });
-});
+    }
+  });
 
 
-//sign up 
-app.post('/', (req, res) => {
-  UserModel.create(req.body)
-      .then(users => res.json(users))
-      .catch(err => res.json(err));
-});
 
 
-// login 
+  //emplyee delete 
+  app.delete('/delete_employee/:id', async (req, res) => {
+    try {
+      const id = req.params.id;
+      const employee = await EmployeeModel.findByIdAndDelete(id);
 
-app.post("/login", (req, res) => {
-  const { email, password } = req.body;
-  UserModel.findOne({ email: email })
-      .then(user => {
-          if (user) {
-              if (user.password === password) {
-                  res.json("Success");
-              } else {
-                  res.json("Password is incorrect");
-              }
-          } else {
-              res.json("Invalid email or password");
-          }
+      return employee
+        ? res.json({ message: 'Employee deleted successfully' })
+        : res.status(404).json({ error: 'Employee not found' });
+    } catch (error) {
+      res.status(500).json({ error: 'Internal Server Error', details: error.message });
+    }
+  });
+
+  //get data for Employee profile by id
+  app.get('/profile_employee/:id', (req, res) => {
+    const id = req.params.id;
+    EmployeeModel.findById(id)
+      .then(employee => {
+        if (!employee) {
+          res.status(404).json({ error: 'Employee not found' });
+        } else {
+          res.json(employee);
+        }
       })
-      .catch(err => res.json(err));
-});
+      
+  });
 
-app.listen(port, () => {
-  console.log(`server running on port ${port}`);
-});
+
+  //get data for Head profile by id
+  app.get('/profile_head/:id', (req, res) => {
+    const id = req.params.id;
+    HeadsModel.findById(id)
+      .then(heads => {
+        if (!heads) {
+          res.status(404).json({ error: "Employee not found" }); 
+        } else {
+          res.json(heads); 
+        }
+      })
+      .catch(err => {
+        res.status(500).json({ error: 'Internal Server Error', details: err.message });
+      });
+  });
+
+  // get data for department by id
+  app.get("/profile_department/:id", (req, res) => {
+    const id = req.params.id;
+    DepartmentModel.findById(id)
+      .then(department => {
+        if (!department) {
+          res.status(404).json({ error: "Department not found" });
+        } else {
+          res.json(department);
+        }
+      })
+      .catch(err => {
+        res.status(500).json({ error: 'Internal Server Error', details: err.message });
+      });
+  });
+
+
+
+  // Route to get unique department by name
+  app.get('/unique_department/:name', (req, res) => {
+    const name = req.params.name;
+    DepartmentModel.findOne({ name: name })
+      .then(department => {
+        if (!department) {
+          res.status(404).json({ error: "Department not found" });
+        } else {
+          res.json(department);
+        }
+      })
+      .catch(err => {
+        res.status(500).json({ error: 'Internal Server Error', details: err.message });
+      });
+  });
+
+  // Route to get unique Head by name
+  app.get('/unique_head/:name', (req, res) => {
+    const name = req.params.name;
+    HeadsModel.findOne({ name: name })
+      .then(heads => {
+        if (!heads) {
+          res.status(404).json({ error: "heads not found" });
+        } else {
+          res.json(heads);
+        }
+      })
+      .catch(err => {
+        res.status(500).json({ error: 'Internal Server Error', details: err.message });
+      });
+  });
+
+
+  //sign up 
+  app.post('/', (req, res) => {
+    UserModel.create(req.body)
+        .then(users => res.json(users))
+        .catch(err => res.json(err));
+  });
+
+
+  // login 
+
+  app.post("/login", (req, res) => {
+    const { email, password } = req.body;
+    UserModel.findOne({ email: email })
+        .then(user => {
+            if (user) {
+                if (user.password === password) {
+                    res.json("Success");
+                } else {
+                    res.json("Password is incorrect");
+                }
+            } else {
+                res.json("Invalid email or password");
+            }
+        })
+        .catch(err => res.json(err));
+  });
+
+  app.listen(port, () => {
+    console.log(`server running on port ${port}`);
+  });
 
