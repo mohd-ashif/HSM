@@ -10,7 +10,7 @@ const Sign = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3000', { name, email, password })
+    axios.post(`${process.env.REACT_APP_API_URL}`, { name, email, password })
       .then(result => {
         navigate('/login');
         console.log(result);

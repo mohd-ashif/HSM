@@ -13,7 +13,7 @@ const Profile_head = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/profile_head/${id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/profile_head/${id}`)
       .then(result => {
         setProfileHead(result.data);
       })
@@ -36,7 +36,7 @@ const Profile_head = () => {
             <CardMedia
               component="img"
               height="440"
-              src={`http://localhost:3000/upload/${profileHead.image}`}
+              src={`${process.env.REACT_APP_API_URL}/upload/${profileHead.image}`}
               alt={profileHead.name}
             />
             <CardContent>

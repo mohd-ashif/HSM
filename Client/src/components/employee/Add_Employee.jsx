@@ -14,18 +14,7 @@ const AddEmployee = () => {
   const [departments, setDepartments] = useState([]);
   const [departmentHeads, setDepartmentHeads] = useState([]);
 
-  useEffect(() => {
-    axios.get('http://localhost:3000/departments')
-      .then(result => setDepartments(result.data))
-      .catch(err => console.log(err));
-  }, []);
-
-  useEffect(() => {
-    axios.get('http://localhost:3000/heads')
-      .then(result => setDepartmentHeads(result.data))
-      .catch(err => console.log(err));
-  }, []);
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -39,7 +28,7 @@ const AddEmployee = () => {
     formData.append('selectHead', selectHead);
 
     try {
-      const response = await axios.post('http://localhost:3000/dashboard/add_employee', formData, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/dashboard/add_employee`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

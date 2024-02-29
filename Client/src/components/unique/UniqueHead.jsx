@@ -12,7 +12,7 @@ const Unique_head  = () => {
   const { name } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/Unique_Head/${name}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/Unique_Head/${name}`)
       .then(result => {
         setUniqueHead(result.data);
       })
@@ -39,7 +39,7 @@ const Unique_head  = () => {
             <CardMedia
               component="img"
               height="440"
-              src={`http://localhost:3000/upload/${uniqueHead.image}`}
+              src={`${process.env.REACT_APP_API_URL}/upload/${uniqueHead.image}`}
               alt={uniqueHead.name}
             />
             <CardContent>

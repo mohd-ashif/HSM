@@ -6,7 +6,7 @@ const DepartmentsHeads = () => {
   const [departmentHeads, setDepartmentHeads] = useState([]);
 
   useEffect(() => {         
-    axios.get('http://localhost:3000/heads')
+    axios.get(`${process.env.REACT_APP_API_URL}/heads`)
       .then(result => setDepartmentHeads(result.data))
       .catch(err => console.log(err));
   }, []);
@@ -17,7 +17,7 @@ const DepartmentsHeads = () => {
       return;
     }
 
-    axios.delete(`http://localhost:3000/delete_heads/${departmentHeadId}`)
+    axios.delete(`${process.env.REACT_APP_API_URL}/delete_heads/${departmentHeadId}`)
 
       .then(result => {
 
@@ -56,7 +56,7 @@ const DepartmentsHeads = () => {
                 <td>{departmentHead.age}</td>
                 <td>
                   <img
-                    src={`http://localhost:3000/upload/${departmentHead.image}`}
+                    src={`${process.env.REACT_APP_API_URL}/upload/${departmentHead.image}`}
                     alt="Department Image"
                     style={{ border: '1px solid black', width: '50px', height: '50px', borderRadius: '50%' }}
                   />

@@ -13,7 +13,7 @@ function ProfileEmployee() {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/profile_employee/${id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/profile_employee/${id}`)
       .then(result => {
         setProfile(result.data);
       })
@@ -32,7 +32,7 @@ function ProfileEmployee() {
             <CardMedia
               component="img"
               height="400"
-              src={`http://localhost:3000/upload/${profile.image}`}
+              src={`${process.env.REACT_APP_API_URL}/upload/${profile.image}`}
               alt={profile.name}
             />
             <CardContent>

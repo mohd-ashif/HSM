@@ -16,20 +16,10 @@ function Edit_employee() {
   const [departments, setDepartments] = useState([]);
   const [departmentHeads, setDepartmentHeads] = useState([]);
 
-  useEffect(() => {
-    axios.get('http://localhost:3000/departments')
-      .then(result => setDepartments(result.data))
-      .catch(err => console.log(err));
-  }, []);
+
 
   useEffect(() => {
-    axios.get('http://localhost:3000/heads')
-      .then(result => setDepartmentHeads(result.data))
-      .catch(err => console.log(err));
-  }, []);
-
-  useEffect(() => {
-    axios.get(`http://localhost:3000/get_employee/${id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/get_employee/${id}`)
       .then(result => {
         setName(result.data.name);
         setNumber(result.data.number);
@@ -58,7 +48,7 @@ function Edit_employee() {
     formData.append('selectHead', selectHead);
     formData.append('selectDepartment', selectDepartment);
 
-    axios.put(`http://localhost:3000/edit_employee/${id}`, formData)
+    axios.put(`${process.env.REACT_APP_API_URL}/edit_employee/${id}`, formData)
       .then(result => {
         console.log(result);
         navigate('/dashboard/employee');
@@ -160,7 +150,7 @@ function Edit_employee() {
                   Current Image:
                   {image.name && (
                     <img
-                      src={`http://localhost:3000/upload/${image.name}`}
+                      src={`${process.env.REACT_APP_API_URL}/upload/${image.name}`}
                       alt="Current Department Image"
                       style={{ border: '1px solid black', width: '50px', height: '50px', borderRadius: '50%' }}
                     />

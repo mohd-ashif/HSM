@@ -10,7 +10,7 @@ const ViewHead = () => {
   const [departmentHeads, setDepartmentHeads] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/heads')
+    axios.get(`${process.env.REACT_APP_API_URL}/heads`)
       .then(result => setDepartmentHeads(result.data))
       .catch(err => console.log(err));
   }, []);
@@ -26,11 +26,11 @@ const ViewHead = () => {
         {departmentHeads.map((departmentHead, index) => (
           <div key={index} className='col-md-4 mb-3'>
             <Card
-              hoverable
+              hoverable 
               style={{ width: 300 }}
               cover={
                 <img
-                  src={`http://localhost:3000/upload/${departmentHead.image}`}
+                  src={`${process.env.REACT_APP_API_URL}/${departmentHead.image}`}
                   alt="Department Head Image"
                   style={{ height: '200px', objectFit: 'cover' }}
                 />

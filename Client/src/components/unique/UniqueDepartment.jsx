@@ -11,7 +11,7 @@ const UniqueDepartment = () => {
   const { name } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/unique_department/${name}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/unique_department/${name}`)
       .then(result => {
         setUniqueDept(result.data);
       })

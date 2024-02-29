@@ -11,7 +11,7 @@ const ViewDepartment = () => {
   const [departments, setDepartments] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/departments')
+    axios.get(`${process.env.REACT_APP_API_URL}/departments`)
       .then(result => setDepartments(result.data))
       .catch(err => console.log(err));
   }, []);
@@ -37,7 +37,7 @@ const ViewDepartment = () => {
               cover={
                 <img
                   alt='Department Image'
-                  src={`http://localhost:3000/upload/${department.image}`}
+                  src={`${process.env.REACT_APP_API_URL}/${department.image}`}
                   style={{ height: '200px', objectFit: 'cover' }} 
                 />
               } 

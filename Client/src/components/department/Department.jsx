@@ -2,20 +2,20 @@ import { Button, Table, Space, Image, Carousel } from 'antd';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { EditOutlined, EyeOutlined, DeleteOutlined } from '@ant-design/icons'; // Import Ant Design icons
+import { EditOutlined, EyeOutlined, DeleteOutlined } from '@ant-design/icons'; 
 
 
 const Departments = () => {
   const [departments, setDepartments] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/departments')
+    axios.get(`${process.env.REACT_APP_API_URL}/departments`)
       .then(result => setDepartments(result.data))
       .catch(err => console.log(err));
   }, []);
 
   const handleDelete = (departmentId) => {
-    axios.delete(`http://localhost:3000/delete_department/${departmentId}`)
+    axios.delete(`${process.env.REACT_APP_API_URL}/delete_department/${departmentId}`)
       .then(result => {
         console.log(result);
         setDepartments(departments.filter(dep => dep._id !== departmentId));

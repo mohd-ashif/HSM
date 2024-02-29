@@ -10,7 +10,7 @@ const ViewEmployee = () => {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/employee')
+    axios.get(`${process.env.REACT_APP_API_URL}/employee`)
       .then(result => setEmployees(result.data))
       .catch(err => console.log(err));
   }, []);
@@ -31,7 +31,7 @@ const ViewEmployee = () => {
               cover={employee.image ? (
                 <img
                   alt='Employee Image'
-                  src={`http://localhost:3000/upload/${employee.image}`}
+                  src={`${process.env.REACT_APP_API_URL}/${employee.image}`}
                   style={{ height: '200px', objectFit: 'cover' }}
                 />
               ) : (

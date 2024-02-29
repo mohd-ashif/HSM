@@ -47,7 +47,7 @@ function Edit_Head() {
     formData.append('description', description);
     formData.append('select', select);
 
-    axios.put(`http://localhost:3000/edit_heads/${id}`, formData)
+    axios.put(`${process.env.REACT_APP_API_URL}/edit_heads/${id}`, formData)
       .then(result => {
         console.log(result);
         navigate('/dashboard/heads');
@@ -128,7 +128,7 @@ function Edit_Head() {
               <div>
                 Current Image:
                 <img
-                  src={`http://localhost:3000/upload/${image.name}`}
+                  src={`${process.env.REACT_APP_API_URL}/upload/${image.name}`}
                   alt="Current Department Image"
                   style={{ border: '1px solid black', width: '50px', height: '50px', borderRadius: '50%' }}
                 />
