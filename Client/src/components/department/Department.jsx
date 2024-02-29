@@ -79,7 +79,7 @@ const Departments = () => {
       <div className='d-flex justify-content-center'>
         <h3>Department List</h3>
       </div>
-     <Button type='primary'><Link to='/dashboard/add_departments' >
+     <Button type='' ><Link to='/dashboard/add_departments' >
         Add Department
       </Link>
       </Button> 

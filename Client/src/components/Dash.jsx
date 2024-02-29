@@ -5,7 +5,8 @@ import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Responsive
 import { Link } from 'react-router-dom';
 
 
-function Dash() {
+function Dash(props) {
+ 
   const data = [
     { name: 'Emergency', patients: 20, doctors: 8 },
     { name: 'Surgery', patients: 15, doctors: 10 },
@@ -28,21 +29,21 @@ function Dash() {
           <h3>DEPARTMENTS</h3> 
             <BsBuilding className='card_icon' />
           </div>
-          <h1>7</h1>
+          <h1>5</h1>
         </div> </Link>
         <Link to="/view_head"><div className='card'>
           <div className='card-inner'>
             <h3>DEPARTMENTS HEADS</h3>
             <BsPerson className='card_icon' />
           </div>
-          <h1>61</h1>
+          <h1>6</h1>
         </div> </Link >
         <Link to="/view_employee"> <div className='card p-4'>
           <div className='card-inner'>
             <h3>EMPLOYEES</h3>
             <FaUsers  className='card_icon' />
           </div>
-          <h1>158</h1>
+          <h1>5</h1>
         </div> </Link>
         <div className='card'>
           <div className='card-inner'>
