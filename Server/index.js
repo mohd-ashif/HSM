@@ -13,8 +13,11 @@ const app = express();
 const port = process.env.PORT;
 
 // Middlewares
-app.use(cors());
+app.use(cors({ 
+  origin: process.env.FRONTEND_URI,
+  credentials: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
 app.use('/upload', express.static('upload'));
 
 // DB
