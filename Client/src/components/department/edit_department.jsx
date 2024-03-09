@@ -11,7 +11,7 @@ function Edit_department() {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/get_department/${id}`)
+    axios.get(`${import.meta.env.VITE_API_BASE_URL}/get_department/${id}`)
       .then(result => {
         console.log(result);
         setName(result.data.name);
@@ -35,7 +35,7 @@ function Edit_department() {
     formData.append('year', year);
     formData.append('description', description);
 
-    axios.put(`${process.env.REACT_APP_API_URL}/edit_department/${id}`, formData)
+    axios.put(`${import.meta.env.VITE_API_BASE_URL}/edit_department/${id}`, formData)
       .then(result => {
         console.log(result);
         navigate('/dashboard/departments');  
@@ -92,7 +92,7 @@ function Edit_department() {
                 <div>
                   Current Image: 
                   <img
-                    src={`${process.env.REACT_APP_API_URL}/upload/${image.name}`}
+                    src={`${import.meta.env.VITE_API_BASE_URL}/upload/${image.name}`}
                     alt="Current Department Image"
                     style={{ border: '1px solid black', width: '50px', height: '50px', borderRadius: '50%' }}
                   />

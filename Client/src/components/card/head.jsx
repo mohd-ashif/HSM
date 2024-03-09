@@ -10,7 +10,7 @@ const ViewHead = () => {
   const [departmentHeads, setDepartmentHeads] = useState([]);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/heads`)
+    axios.get(`${import.meta.env.VITE_API_BASE_URL}/heads`)
       .then(result => setDepartmentHeads(result.data))
       .catch(err => console.log(err));
   }, []);
@@ -30,7 +30,7 @@ const ViewHead = () => {
               style={{ width: 300 }}
               cover={
                 <img
-                  src={`${process.env.REACT_APP_API_URL}/${departmentHead.image}`}
+                  src={`${import.meta.env.VITE_API_BASE_URL}/${departmentHead.image}`}
                   alt="Department Head Image"
                   style={{ height: '200px', objectFit: 'cover' }}
                 />

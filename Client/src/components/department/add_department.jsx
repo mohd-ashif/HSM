@@ -19,7 +19,7 @@ const Add_departmentlist = () => {
     formData.append('image', image);
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/dashboard/add_departments`, formData, {
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/dashboard/add_departments`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

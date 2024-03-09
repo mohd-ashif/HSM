@@ -13,7 +13,7 @@ const ProfileDepartment = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/profile_department/${id}`)
+    axios.get(`${import.meta.env.VITE_API_BASE_URL}/profile_department/${id}`)
       .then(result => {
         setProfileDept(result.data);
       })
@@ -33,7 +33,7 @@ const ProfileDepartment = () => {
             <CardMedia
               component="img"
               height="400" 
-              src={`${process.env.REACT_APP_API_URL}/upload/${profileDept.image}`}
+              src={`${import.meta.env.VITE_API_BASE_URL}/upload/${profileDept.image}`}
               alt={profileDept.name}
             />
             <CardContent>

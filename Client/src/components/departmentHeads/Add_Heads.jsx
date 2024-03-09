@@ -13,7 +13,7 @@ const Add_Heads = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/departments`)
+    axios.get(`${import.meta.env.VITE_API_BASE_URL}/departments`)
       .then(result => setDepartments(result.data))
       .catch(err => console.log(err));
   }, []);
@@ -30,7 +30,7 @@ const Add_Heads = () => {
     formData.append('select', select);
   
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/dashboard/add_heads`, formData, {
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/dashboard/add_heads`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

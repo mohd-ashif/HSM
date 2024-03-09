@@ -19,7 +19,7 @@ function Edit_employee() {
 
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/get_employee/${id}`)
+    axios.get(`${import.meta.env.VITE_API_BASE_URL}/get_employee/${id}`)
       .then(result => {
         setName(result.data.name);
         setNumber(result.data.number);
@@ -48,7 +48,7 @@ function Edit_employee() {
     formData.append('selectHead', selectHead);
     formData.append('selectDepartment', selectDepartment);
 
-    axios.put(`${process.env.REACT_APP_API_URL}/edit_employee/${id}`, formData)
+    axios.put(`${import.meta.env.VITE_API_BASE_URL}/edit_employee/${id}`, formData)
       .then(result => {
         console.log(result);
         navigate('/dashboard/employee');
@@ -150,7 +150,7 @@ function Edit_employee() {
                   Current Image:
                   {image.name && (
                     <img
-                      src={`${process.env.REACT_APP_API_URL}/upload/${image.name}`}
+                      src={`${import.meta.env.VITE_API_BASE_URL}/upload/${image.name}`}
                       alt="Current Department Image"
                       style={{ border: '1px solid black', width: '50px', height: '50px', borderRadius: '50%' }}
                     />

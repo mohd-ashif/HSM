@@ -6,7 +6,7 @@ const Employee = () => {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/employee`)
+    axios.get(`${import.meta.env.VITE_API_BASE_URL}/employee`)
       .then(result => setEmployees(result.data))
       .catch(err => console.log(err));
   }, []);
@@ -19,7 +19,7 @@ const Employee = () => {
       return
     }
 
-    axios.delete(`${process.env.REACT_APP_API_URL}/delete_employee/${employeeId}`)
+    axios.delete(`${import.meta.env.VITE_API_BASE_URL}/delete_employee/${employeeId}`)
       .then(result => {
         setEmployees(employees.filter(employee => employee._id !== (employeeId)))
       })
@@ -62,7 +62,7 @@ const Employee = () => {
                 <td>
                   {employee.image ? (
                     <img
-                      src={`${process.env.REACT_APP_API_URL}/upload/${employee.image}`}
+                      src={`${import.meta.env.VITE_API_BASE_URL}/upload/${employee.image}`}
                       alt="Employee Image"
                       style={{ border: '1px solid black', width: '50px', height: '50px', borderRadius: '50%' }}
                     />

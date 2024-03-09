@@ -28,7 +28,7 @@ const AddEmployee = () => {
     formData.append('selectHead', selectHead);
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/dashboard/add_employee`, formData, {
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/dashboard/add_employee`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

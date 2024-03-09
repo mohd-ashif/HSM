@@ -10,7 +10,7 @@ const ViewEmployee = () => {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/employee`)
+    axios.get(`${import.meta.env.VITE_API_BASE_URL}/employee`)
       .then(result => setEmployees(result.data))
       .catch(err => console.log(err));
   }, []);
@@ -31,7 +31,7 @@ const ViewEmployee = () => {
               cover={employee.image ? (
                 <img
                   alt='Employee Image'
-                  src={`${process.env.REACT_APP_API_URL}/${employee.image}`}
+                  src={`${import.meta.env.VITE_API_BASE_URL}/${employee.image}`}
                   style={{ height: '200px', objectFit: 'cover' }}
                 />
               ) : (
